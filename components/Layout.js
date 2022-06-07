@@ -1,4 +1,5 @@
 import Head from "next/head";
+import NavBar from "../components/NavBar";
 
 const Layout = ({ title, children }) => {
   return (
@@ -6,6 +7,7 @@ const Layout = ({ title, children }) => {
       <Head>
         <title>{title} | MPList</title>
       </Head>
+      <NavBar />
       <main>{children}</main>
     </>
   );
