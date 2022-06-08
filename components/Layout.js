@@ -8,7 +8,9 @@ const Layout = ({ title, children }) => {
         <title>{title} | MPList</title>
       </Head>
       <NavBar />
-      <main>{children}</main>
+      <main className="flex flex-col max-w-screen-2xl mx-auto px-8">
+        {children}
+      </main>
     </>
   );
 };
