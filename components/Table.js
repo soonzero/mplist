@@ -12,7 +12,10 @@ export default function Table({ category, limit, count }) {
 
   const setData = async () => {
     try {
-      const data = await useAPI("GET", `/browse/${category}`, limit);
+      const data = await useAPI("GET", `/browse/${category}`, {
+        country: "KR",
+        limit,
+      });
       let items, title;
       if (category === "new-releases") {
         title = "신규 앨범";

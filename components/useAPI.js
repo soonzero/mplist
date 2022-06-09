@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const useAPI = async (method, url, limit) => {
+export const useAPI = async (method, url, params) => {
   const { data } = await axios({
     method,
     baseURL: "https://api.spotify.com/v1/",
@@ -8,10 +8,7 @@ export const useAPI = async (method, url, limit) => {
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
     },
-    params: {
-      country: "KR",
-      limit,
-    },
+    params,
   });
   return data;
 };
