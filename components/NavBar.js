@@ -3,26 +3,19 @@ import Logo from "../public/logo-no-text.svg";
 import signout from "../components/Logout";
 import { useEffect, useState } from "react";
 import Spotify from "../public/spotify.svg";
-
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+import getToken from "./getToken";
+import {
+  AUTH_ENDPOINT,
+  CLIENT_ID,
+  REDIRECT_URI,
+  RESPONSE_TYPE,
+} from "./apiData";
 
 export default function NavBar() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    if (!token && hash.includes("access_token")) {
-      token = hash.substring(1).split("&")[0].substring(13);
-
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-    }
-    setToken(token);
+    setToken(getToken());
   }, []);
 
   const logout = () => {
