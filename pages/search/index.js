@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import Image from "next/image";
 import SearchSVG from "../../public/search.svg";
+import Cover from "../../components/Cover";
 import { useAPI } from "../../components/useAPI";
 
 export default function Music() {
   const [keyword, setKeyword] = useState("");
   const [tracks, setTracks] = useState([]);
-
-  const onChangeKeyword = (e) => {
-    setKeyword(e.target.value);
-  };
 
   const onSubmitSearch = async (e) => {
     e.preventDefault();
@@ -34,8 +30,8 @@ export default function Music() {
         >
           <input
             type="text"
-            onChange={onChangeKeyword}
-            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-[#D2CAF6] w-64 placeholder:italic"
+            onChange={(e) => setKeyword(e.target.value)}
+            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-[#D2CAF6] w-64 placeholder:italic placeholder:text-slate-300"
             placeholder="Search..."
           />
           <button type="submit" className="p-2">
@@ -43,13 +39,8 @@ export default function Music() {
           </button>
         </form>
         <div className="grid grid-flow-row grid-cols-5 gap-4 text-sm">
-          {tracks?.map((t) => (
-            <div
-              key={t.id}
-              className="flex flex-col justify-start items-center overflow-hidden"
-            >
-              <Image src={t.album.images[0].url} width={640} height={640} />
-            </div>
+          {tracks?.map((i) => (
+            <Cover key={i.id} category="search" item={i} />
           ))}
         </div>
       </Layout>

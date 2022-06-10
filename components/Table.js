@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useAPI } from "./useAPI";
+import Cover from "./Cover";
 import PrevSVG from "../public/prev-button.svg";
 import NextSVG from "../public/next-button.svg";
 
@@ -56,14 +56,10 @@ export default function Table({ category, limit, count }) {
   return (
     <div className="py-4">
       <h1 className="font-bold text-2xl mb-4">{tableTopic}</h1>
-      <div className="relative grid grid-flow-col grid-rows-1 gap-2">
-        {table?.map((i) => {
-          return (
-            <div key={i.id} className="h-full w-auto">
-              <Image src={i.images[0].url} width={640} height={640} />
-            </div>
-          );
-        })}
+      <div className="relative grid grid-flow-col grid-rows-1 gap-5">
+        {table?.map((i) => (
+          <Cover key={i.id} category={category} item={i} />
+        ))}
         {table?.length > 0 && (
           <>
             {page !== 0 && (
