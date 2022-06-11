@@ -23,7 +23,7 @@ export default function Music() {
 
   return (
     <>
-      <Layout title="Music">
+      <Layout title="검색">
         <form
           onSubmit={onSubmitSearch}
           className="flex items-center justify-center w-full py-10"
