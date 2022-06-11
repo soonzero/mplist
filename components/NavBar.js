@@ -35,6 +35,9 @@ export default function NavBar() {
           <Link href="/">
             <a className="px-4 py-2 text-sm text-gray-600">Home</a>
           </Link>
+          <Link href="/albums">
+            <a className="px-4 py-2 text-sm text-gray-600">Albums</a>
+          </Link>
           <Link href="/search">
             <a className="px-4 py-2 text-sm text-gray-600">Search</a>
           </Link>
