@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Cover = ({ category, item }) => {
+  const router = useRouter();
   const [hover, setHover] = useState(false);
 
   const data = () => {
@@ -23,11 +25,18 @@ const Cover = ({ category, item }) => {
     }
   };
 
+  const onClickHandler = ({ type, id }) => {
+    if (type === "album") {
+      router.push(`/albums/${id}`);
+    }
+  };
+
   return (
     <div
-      className="h-full w-full overflow-hidden relative cursor-pointer"
+      className="overflow-hidden relative cursor-pointer"
       onMouseEnter={() => setHover((prev) => !prev)}
       onMouseLeave={() => setHover((prev) => !prev)}
+      onClick={() => onClickHandler(item)}
     >
       <Image src={data().image} width={640} height={640} />
       {hover && (
