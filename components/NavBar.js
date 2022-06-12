@@ -46,7 +46,7 @@ export default function NavBar() {
           <Link
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
-            <a className="flex flex-row items-center justify-center rounded-full opacity-70 bg-[#1ED760] hover:bg-[#1ED760] hover:opacity-100 text-white py-2 px-4">
+            <a className="flex flex-row items-center justify-center rounded-full opacity-70 bg-spotify hover:bg-spotify hover:opacity-100 text-white py-2 px-4">
               Login with
               <Spotify className="fill-white w-5 h-auto ml-2" />
             </a>

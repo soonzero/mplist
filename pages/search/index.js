@@ -31,7 +31,7 @@ export default function Music() {
           <input
             type="text"
             onChange={(e) => setKeyword(e.target.value)}
-            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-[#D2CAF6] w-64 placeholder:italic placeholder:text-slate-300"
+            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-mplist w-64 placeholder:italic placeholder:text-slate-300"
             placeholder="Search..."
           />
           <button type="submit" className="p-2">

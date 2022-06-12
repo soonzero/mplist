@@ -65,7 +65,7 @@ export default function Table({ category, limit, count }) {
             {page !== 0 && (
               <span
                 id="prev"
-                className="absolute flex items-center -left-7 cursor-pointer h-full hover:bg-[#D2CAF6] hover:text-white hover:opacity-50"
+                className="absolute flex items-center -left-7 cursor-pointer h-full hover:bg-mplist hover:text-white hover:opacity-50"
                 onClick={controlPage}
               >
                 <PrevSVG className="h-5 w-5" />
@@ -74,7 +74,7 @@ export default function Table({ category, limit, count }) {
             {page !== limit / count - 1 && (
               <span
                 id="next"
-                className="absolute flex items-center -right-7 cursor-pointer h-full  hover:bg-[#D2CAF6] hover:text-white hover:opacity-50"
+                className="absolute flex items-center -right-7 cursor-pointer h-full  hover:bg-mplist hover:text-white hover:opacity-50"
                 onClick={controlPage}
               >
                 <NextSVG className="h-5 w-5" />
