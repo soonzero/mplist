@@ -10,6 +10,7 @@ import {
   REDIRECT_URI,
   RESPONSE_TYPE,
 } from "./apiData";
+import classNames from "classnames";
 
 export default function NavBar() {
   const [token, setToken] = useState("");
@@ -32,18 +33,26 @@ export default function NavBar() {
               <Logo className="h-12 w-12" />
             </a>
           </Link>
-          <Link href="/">
-            <a className="px-4 py-2 text-sm text-gray-600">Home</a>
-          </Link>
-          <Link href="/albums">
-            <a className="px-4 py-2 text-sm text-gray-600">Albums</a>
-          </Link>
-          <Link href="/playlists">
-            <a className="px-4 py-2 text-sm text-gray-600">Playlists</a>
-          </Link>
-          <Link href="/search">
-            <a className="px-4 py-2 text-sm text-gray-600">Search</a>
-          </Link>
+          {[
+            { href: "/", element: "Home" },
+            { href: "/albums", element: "Albums" },
+            { href: "/playlists", element: "Playlists" },
+            { href: "/artists", element: "Artists" },
+            { href: "/search", element: "Search" },
+          ].map((i) => {
+            return (
+              <Link href={i.href}>
+                <a
+                  className={classNames("px-4 py-2 text-sm text-gray-600", {
+                    "text-mplist":
+                      router.pathname.split("/")[1] === i.href.substring(1),
+                  })}
+                >
+                  {i.element}
+                </a>
+              </Link>
+            );
+          })}
         </div>
         {!token ? (
           <Link
