@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { useAPI } from "../../components/useAPI";
 import convertDuration from "../../components/convertDuration";
+import Link from "next/link";
 
 const Album = () => {
   const [result, setResult] = useState();
@@ -12,7 +13,6 @@ const Album = () => {
   const setData = async () => {
     try {
       const data = await useAPI("GET", `albums/${router.query.id}`);
-      console.log(data);
       setResult(data);
     } catch (e) {
       console.log(e);
@@ -36,25 +36,24 @@ const Album = () => {
             <>
               <div className="pt-5 first:pt-0">
                 {result.album_type === "album" && (
-                  <h2 className="flex justify-between px-5 py-2 border-b-2 border-b-mplist">
+                  <h2 className="flex justify-between items-end px-5 py-2 border-b-2 border-b-mplist">
                     CD{idx + 1}
-                    <span>
+                    <span className="text-sm">
                       {disc.length} {disc.length === 1 ? `track` : `tracks`}
                     </span>
                   </h2>
                 )}
-
                 <ul className="divide-dashed divide-y-2">
                   {disc.map((t) => {
                     return (
-                      <li className="flex items-end py-3">
-                        <p className="basis-1/12 px-5 text-right">
+                      <li className="flex items-center py-3 text-sm cursor-pointer">
+                        <p className="px-5 text-right">
                           {t.track_number > 9
                             ? t.track_number
                             : `0${t.track_number}`}
                         </p>
-                        <p className="font-medium text-black">{t.name}</p>
-                        <p className="text-sm text-gray-500 text-right basis-1/12">
+                        <p className="grow text-black">{t.name}</p>
+                        <p className="text-xs text-gray-500 text-right basis-1/12 px-5">
                           {convertDuration(t.duration_ms)}
                         </p>
                       </li>
@@ -78,8 +77,17 @@ const Album = () => {
             <div className="mt-5">
               <h1 className="font-bold">{result.name}</h1>
               <div>
-                {result.artists.map((artist) => {
-                  return <p key={artist.id}>{artist.name}</p>;
+                {result.artists.map((artist, idx) => {
+                  return (
+                    <Link href={`/artists/${artist.id}`} key={artist.id}>
+                      <a>
+                        <p className="inline-block cursor-pointer hover:text-mplist">
+                          {artist.name}
+                        </p>
+                        <span>{idx !== result.artists.length - 1 && ", "}</span>
+                      </a>
+                    </Link>
+                  );
                 })}
               </div>
               <p>{`${result.release_date
