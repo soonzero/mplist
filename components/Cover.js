@@ -28,6 +28,8 @@ const Cover = ({ category, item }) => {
   const onClickHandler = ({ type, id }) => {
     if (type === "album") {
       router.push(`/albums/${id}`);
+    } else if (type === "playlist") {
+      router.push(`/playlists/${id}`);
     }
   };
 
