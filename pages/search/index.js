@@ -1,20 +1,15 @@
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import SearchSVG from "../../public/search.svg";
-import Cover from "../../components/Cover";
-import { useAPI } from "../../components/useAPI";
 
 export default function Music() {
+  const router = useRouter();
   const [keyword, setKeyword] = useState("");
-  const [tracks, setTracks] = useState([]);
 
-  const onSubmitSearch = async (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
-    const data = await useAPI("GET", `/search`, {
-      q: keyword,
-      type: "track,artist,album",
-    });
-    setTracks(data.tracks.items);
+    router.push(`/search/${keyword}`);
   };
 
   useEffect(() => {
@@ -25,8 +20,8 @@ export default function Music() {
     <>
       <Layout title="검색">
         <form
-          onSubmit={onSubmitSearch}
-          className="flex items-center justify-center w-full py-10"
+          onSubmit={onSubmitHandler}
+          className="flex items-center justify-center w-full h-[calc(100vh-64px)]"
         >
           <input
             type="text"
@@ -38,11 +33,6 @@ export default function Music() {
             <SearchSVG className="h-8 w-8" />
           </button>
         </form>
-        <div className="grid grid-flow-row grid-cols-5 gap-4 text-sm">
-          {tracks?.map((i) => (
-            <Cover key={i.id} category="search" item={i} />
-          ))}
-        </div>
       </Layout>
     </>
   );

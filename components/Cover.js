@@ -25,11 +25,13 @@ const Cover = ({ category, item }) => {
     }
   };
 
-  const onClickHandler = ({ type, id }) => {
+  const onClickHandler = ({ type, id, album }) => {
     if (type === "album") {
       router.push(`/albums/${id}`);
     } else if (type === "playlist") {
       router.push(`/playlists/${id}`);
+    } else if (type === "track") {
+      router.push(`/albums/${album.id}`);
     }
   };
 
