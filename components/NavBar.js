@@ -43,6 +43,7 @@ export default function NavBar() {
             { href: "/playlists", element: "Playlists" },
             { href: "/artists", element: "Artists" },
             { href: "/search", element: "Search" },
+            { href: "/mypage", element: "My Page" },
           ].map((i) => {
             return (
               <Link href={i.href}>
