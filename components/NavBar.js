@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "../public/logo-no-text.svg";
 import signout from "../components/Logout";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Spotify from "../public/spotify.svg";
 import getToken from "./getToken";
@@ -13,6 +14,7 @@ import {
 import classNames from "classnames";
 
 export default function NavBar() {
+  const router = useRouter();
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -22,6 +24,7 @@ export default function NavBar() {
   const logout = () => {
     signout();
     setToken("");
+    router.push("/auth/logout");
   };
 
   return (
