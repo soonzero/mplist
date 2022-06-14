@@ -1,15 +1,16 @@
 import Link from "next/link";
-import Logo from "../public/logo-no-text.svg";
+import LogoSVG from "../public/logo-no-text.svg";
 import signout from "../components/Logout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Spotify from "../public/spotify.svg";
+import SpotifySVG from "../public/spotify.svg";
 import getToken from "./getToken";
 import {
   AUTH_ENDPOINT,
   CLIENT_ID,
   REDIRECT_URI,
   RESPONSE_TYPE,
+  SCOPE,
 } from "./apiData";
 import classNames from "classnames";
 
@@ -33,7 +34,7 @@ export default function NavBar() {
         <div className="flex flex-row items-center">
           <Link href="/">
             <a className="flex items-center mr-10">
-              <Logo className="h-12 w-12" />
+              <LogoSVG className="h-12 w-12" />
             </a>
           </Link>
           {[
@@ -59,11 +60,11 @@ export default function NavBar() {
         </div>
         {!token ? (
           <Link
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
           >
             <a className="flex flex-row items-center justify-center rounded-full opacity-70 bg-spotify hover:bg-spotify hover:opacity-100 text-white py-2 px-4">
               Login with
-              <Spotify className="fill-white w-5 h-auto ml-2" />
+              <SpotifySVG className="fill-white w-5 h-auto ml-2" />
             </a>
           </Link>
         ) : (
