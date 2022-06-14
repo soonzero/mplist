@@ -40,7 +40,7 @@ const Playlist = () => {
               <div className="px-4 space-y-1">
                 <h3 className="text-xl font-bold pb-1">{result.name}</h3>
                 <p>{removeBracket(result.description)}</p>
-                <p>{addCommasToNumber(result.followers.total)}명 following</p>
+                <p>{addCommasToNumber(result.followers.total)} following</p>
               </div>
             </div>
             <div>
@@ -76,7 +76,7 @@ const Playlist = () => {
                         })}
                       </span>
                       <Link href={`/albums/${t.track.album.id}`}>
-                        <span className="text-xs basis-3/12 truncate cursor-pointer hover:text-mplist hover:underline">
+                        <span className="text-xs basis-3/12 truncate cursor-pointer hover:text-mplist hover:underline px-2">
                           {t.track.album.name}
                         </span>
                       </Link>
