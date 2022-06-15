@@ -4,6 +4,7 @@ import signout from "../components/Logout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import SpotifySVG from "../public/spotify.svg";
+import ProfileSVG from "../public/profile.svg";
 import getToken from "./getToken";
 import {
   AUTH_ENDPOINT,
@@ -17,6 +18,7 @@ import classNames from "classnames";
 export default function NavBar() {
   const router = useRouter();
   const [token, setToken] = useState("");
+  const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
     setToken(getToken());
@@ -43,15 +45,17 @@ export default function NavBar() {
             { href: "/playlists", element: "Playlists" },
             { href: "/artists", element: "Artists" },
             { href: "/search", element: "Search" },
-            { href: "/mypage", element: "My Page" },
           ].map((i) => {
             return (
-              <Link href={i.href}>
+              <Link key={i.element} href={i.href}>
                 <a
-                  className={classNames("px-4 py-2 text-sm text-gray-600", {
-                    "text-mplist":
-                      router.pathname.split("/")[1] === i.href.substring(1),
-                  })}
+                  className={classNames(
+                    "px-4 py-2 text-sm text-gray-600 hover:text-gray-400",
+                    {
+                      "text-mplist":
+                        router.pathname.split("/")[1] === i.href.substring(1),
+                    }
+                  )}
                 >
                   {i.element}
                 </a>
@@ -69,12 +73,27 @@ export default function NavBar() {
             </a>
           </Link>
         ) : (
-          <a
-            onClick={logout}
-            className="rounded-full bg-gray-200 hover:bg-gray-300 text-white py-2 px-4"
+          <span
+            className="cursor-pointer relative"
+            onClick={() => setDropdown((prev) => !prev)}
           >
-            로그아웃
-          </a>
+            <ProfileSVG className="w-10 h-10 text-gray-300 hover:text-mplist" />
+            {dropdown && (
+              <ul className="absolute top-10 right-0 z-30 w-max overflow-hidden rounded-lg border text-sm">
+                <Link href="/mypage">
+                  <li className="px-5 py-2 bg-white hover:bg-mplist hover:text-white border-b">
+                    마이 페이지
+                  </li>
+                </Link>
+                <li
+                  className="px-5 py-2 bg-white hover:bg-mplist hover:text-white"
+                  onClick={logout}
+                >
+                  로그아웃
+                </li>
+              </ul>
+            )}
+          </span>
         )}
       </div>
     </nav>
