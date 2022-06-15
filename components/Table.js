@@ -20,7 +20,7 @@ export default function Table({ category, limit, count }) {
       if (category === "new-releases") {
         title = "신규 앨범";
         items = data.albums.items;
-      } else if (category == "featured-playlists") {
+      } else if (category === "featured-playlists") {
         title = data.message;
         items = data.playlists.items;
       }
