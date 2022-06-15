@@ -6,16 +6,49 @@ import Image from "next/image";
 import Link from "next/link";
 import addCommasToNumber from "../../components/addCommasToNumber";
 import AddSVG from "../../public/add.svg";
+import DeleteSVG from "../../public/delete.svg";
 
 const Playlist = () => {
   const [result, setResult] = useState();
   const router = useRouter();
+  const [following, setFollowing] = useState();
 
   const setData = async () => {
     try {
       const data = await useAPI("GET", `playlists/${router.query.id}`);
-      console.log(data);
       setResult(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getFollowing = async () => {
+    try {
+      const { id } = await useAPI("GET", `/me`);
+      const result = await useAPI(
+        "GET",
+        `/playlists/${router.query.id}/followers/contains`,
+        {
+          ids: id,
+        }
+      );
+      setFollowing(result[0]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const managePlaylistFollowing = async () => {
+    try {
+      if (following) {
+        await useAPI("DELETE", `/playlists/${router.query.id}/followers`);
+        setFollowing(false);
+      } else {
+        await useAPI("PUT", `/playlists/${router.query.id}/followers`, {
+          public: true,
+        });
+        setFollowing(true);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -30,6 +63,10 @@ const Playlist = () => {
     setData();
   }, []);
 
+  useEffect(() => {
+    getFollowing();
+  }, [following]);
+
   return (
     <Layout title="플레이리스트">
       <div className="py-4 flex flex-col text-sm">
@@ -37,10 +74,28 @@ const Playlist = () => {
           <>
             <div className="flex rounded-lg border-2 p-4 mb-4">
               <Image src={result.images[0].url} width={250} height={250} />
-              <div className="px-4 space-y-1">
-                <h3 className="text-xl font-bold pb-1">{result.name}</h3>
-                <p>{removeBracket(result.description)}</p>
-                <p>{addCommasToNumber(result.followers.total)} following</p>
+              <div className="grow flex flex-col px-4 space-y-1">
+                <div>
+                  <h3 className="text-xl font-bold pb-1">{result.name}</h3>
+                  <p>{removeBracket(result.description)}</p>
+                  <p>{addCommasToNumber(result.followers.total)} following</p>
+                </div>
+                <div className="grow flex justify-end items-end">
+                  <button
+                    type="button"
+                    className="rounded-full px-5 py-3 bg-black text-white flex hover:bg-mplist"
+                    onClick={managePlaylistFollowing}
+                  >
+                    {following ? (
+                      <DeleteSVG className="h-5 w-5 mr-1" />
+                    ) : (
+                      <AddSVG className="w-5 h-5 mr-1" />
+                    )}
+                    <span>
+                      {following ? "Unfollow" : "이 플레이리스트 Follow"}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
             <div>
