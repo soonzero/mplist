@@ -7,7 +7,7 @@ import ChevronSVG from "../../public/chevron-double-right.svg";
 import AddSVG from "../../public/add.svg";
 import CheckSVG from "../../public/check.svg";
 import classNames from "classnames";
-import { createPlaylist } from "../../components/createPlaylist";
+import createPlaylist from "../../components/createPlaylist";
 
 const MyPage = () => {
   const [result, setResult] = useState();
@@ -28,8 +28,7 @@ const MyPage = () => {
 
   const onClickHandler = async (e) => {
     if (addMode) {
-      e.preventDefault();
-      createPlaylist(result.info.id, name, description);
+      createPlaylist(result.info.id, name, description, checked);
     } else {
       setAddMode(true);
     }
@@ -76,7 +75,7 @@ const MyPage = () => {
               </h1>
             </Link>
             {result.playlists.total > 0 ? (
-              <div className="grid grid-flow-col grid-cols-6 gap-2 mb-5 border-y">
+              <div className="grid grid-cols-7 grid- gap-2 mb-5 border-y">
                 {result.playlists.items.map((i) => {
                   return (
                     <div className="cursor-pointer hover:opacity-50">
