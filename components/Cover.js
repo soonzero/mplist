@@ -38,20 +38,20 @@ const Cover = ({ category, item }) => {
   return (
     <div
       className="overflow-hidden relative cursor-pointer"
-      onMouseEnter={() => setHover((prev) => !prev)}
-      onMouseLeave={() => setHover((prev) => !prev)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       onClick={() => onClickHandler(item)}
     >
       <Image src={data().image} width={640} height={640} />
       {hover && (
         <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 bg-opacity-40 bg-black text-white z-10">
-          <span>{data().title}</span>
+          <span className="font-medium">{data().title}</span>
           {data().artists && (
             <span>
               {data().artists.map((a, idx) => {
                 return (
                   <span key={a.id}>
-                    {a.name}
+                    <span>{a.name}</span>
                     {idx === data().artists.length - 1 ? "" : ", "}
                   </span>
                 );
