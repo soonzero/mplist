@@ -14,21 +14,30 @@ import {
   SCOPE,
 } from "./apiData";
 import classNames from "classnames";
+import Cookies from "js-cookie";
 
 export default function NavBar() {
   const router = useRouter();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState();
   const [dropdown, setDropdown] = useState(false);
-
-  useEffect(() => {
-    setToken(getToken());
-  }, []);
 
   const logout = () => {
     signout();
-    setToken("");
     router.push("/auth/logout");
   };
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = Cookies.get("mplistToken");
+
+    if (!token && hash.includes("access_token")) {
+      token = hash.substring(1).split("&")[0].substring(13);
+      window.location.hash = "";
+      Cookies.set("mplistToken", token, { expires: 1 / 24, secure: true });
+    }
+
+    setToken(token);
+  }, []);
 
   return (
     <nav className="sticky top-0 bg-white shadow-sm z-10">
