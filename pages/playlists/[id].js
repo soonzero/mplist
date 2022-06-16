@@ -73,11 +73,15 @@ const Playlist = () => {
         {result && (
           <>
             <div className="flex rounded-lg border-2 p-4 mb-4">
-              <Image src={result.images[0].url} width={250} height={250} />
+              <Image
+                src={result.images[0]?.url || `/logo-no-text.svg`}
+                width={250}
+                height={250}
+              />
               <div className="grow flex flex-col px-4 space-y-1">
                 <div>
                   <h3 className="text-xl font-bold pb-1">{result.name}</h3>
-                  <p>{removeBracket(result.description)}</p>
+                  <p>{result.description}</p>
                   <p>{addCommasToNumber(result.followers.total)} following</p>
                 </div>
                 <div className="grow flex justify-end items-end">
