@@ -4,7 +4,7 @@ import Link from "next/link";
 import ChevronSVG from "../public/chevron-double-right.svg";
 import AddSVG from "../public/add.svg";
 import CreatePlaylistForm from "./CreatePlaylistForm";
-import createPlaylist from "../functions/createPlaylist";
+import { createPlaylist } from "../functions/playlists";
 
 const PlaylistInMyPage = ({ playlists }) => {
   const [addMode, setAddMode] = useState(false);

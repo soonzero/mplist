@@ -3,7 +3,7 @@ import SearchSVG from "../../public/search.svg";
 import Cover from "../../components/Cover";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import searchSomething from "../../functions/searchSomething";
+import search from "../../functions/search";
 import Cookies from "js-cookie";
 
 const SearchResult = () => {
@@ -13,13 +13,13 @@ const SearchResult = () => {
   const [result, setResult] = useState();
 
   const getData = async () => {
-    const data = await searchSomething(token, router.query.keyword);
+    const data = await search(token, router.query.keyword);
     setResult(data);
   };
 
-  const search = async (e) => {
+  const searchNewKeyword = async (e) => {
     e.preventDefault();
-    const data = await searchSomething(token, keyword);
+    const data = await search(token, keyword);
     setResult(data);
   };
 
@@ -30,7 +30,7 @@ const SearchResult = () => {
   return (
     <Layout title={`${keyword} 검색결과`}>
       <form
-        onSubmit={search}
+        onSubmit={searchNewKeyword}
         className="flex items-center justify-center w-full py-10"
       >
         <input

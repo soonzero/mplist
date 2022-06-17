@@ -1,11 +1,12 @@
 import Layout from "../../components/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAPI } from "../../components/useAPI";
+import useAPI, {
+  addCommasToNumber,
+  convertDuration,
+} from "../../functions/common";
 import Image from "next/image";
 import Link from "next/link";
-import convertDuration from "../../functions/convertDuration";
-import addCommasToNumber from "../../functions/addCommasToNumber";
 
 const Artist = () => {
   const [result, setResult] = useState();

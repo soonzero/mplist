@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import { useAPI } from "../../components/useAPI";
+import useAPI from "../../functions/common";
 import Cookies from "js-cookie";
 import PlaylistInMyPage from "../../components/PlaylistInMyPage";
 import MyProfile from "../../components/MyProfile";

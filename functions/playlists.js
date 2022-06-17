@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const createPlaylist = async (token, id, name, description, checked) => {
+export const createPlaylist = async (token, id, name, description, checked) => {
   try {
     const response = await axios({
       method: "POST",
@@ -19,5 +19,3 @@ const createPlaylist = async (token, id, name, description, checked) => {
     console.log(e);
   }
 };
-
-export default createPlaylist;

@@ -5,14 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import SpotifySVG from "../public/spotify.svg";
 import ProfileSVG from "../public/profile.svg";
-import getToken from "./getToken";
-import {
-  AUTH_ENDPOINT,
-  CLIENT_ID,
-  REDIRECT_URI,
-  RESPONSE_TYPE,
-  SCOPE,
-} from "./apiData";
+import AUTH_LINK from "../data/api";
 import classNames from "classnames";
 import Cookies from "js-cookie";
 
@@ -73,9 +66,7 @@ export default function NavBar() {
           })}
         </div>
         {!token ? (
-          <Link
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
-          >
+          <Link href={AUTH_LINK}>
             <a className="flex flex-row items-center justify-center rounded-full opacity-70 bg-spotify hover:bg-spotify hover:opacity-100 text-white py-2 px-4">
               Login with
               <SpotifySVG className="fill-white w-5 h-auto ml-2" />

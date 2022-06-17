@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAPI } from "./useAPI";
+import useAPI from "../functions/common";
 import Cover from "./Cover";
 import PrevSVG from "../public/prev-button.svg";
 import NextSVG from "../public/next-button.svg";
