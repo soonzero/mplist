@@ -2,22 +2,41 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import useAPI, { convertDuration, manageMine } from "../../functions/common";
+import useAPI, {
+  convertDuration,
+  manageMine,
+  getAlbumSaved,
+  getTracksSaved,
+} from "../../functions/common";
+import AddSVG from "../../public/add.svg";
+import SaveSVG from "../../public/save.svg";
+import TrashSVG from "../../public/trash.svg";
+import CancelSVG from "../../public/cancel.svg";
 
 export const getServerSideProps = async (context) => {
   const albumId = context.params.id;
   const token = context.req.cookies["mplistToken"];
   const data = await useAPI(token, "GET", `/albums/${albumId}`);
+  const albumStatus = await useAPI(token, "GET", `/me/albums/contains`, {
+    ids: albumId,
+  });
+  const tracksStatus = await useAPI(token, "GET", `/me/tracks/contains`, {
+    ids: data.tracks.items.map((i) => i.id).join(","),
+  });
 
   return {
     props: {
       data,
+      albumStatus: albumStatus[0],
+      tracksStatus,
     },
   };
 };
 
-const Album = ({ data }) => {
+const Album = ({ data, albumStatus, tracksStatus }) => {
   const [result, setResult] = useState();
+  const [albumSaved, setAlbumSaved] = useState(albumStatus);
+  const [tracksSaved, setTracksSaved] = useState(tracksStatus);
 
   const setData = () => {
     try {
@@ -30,6 +49,17 @@ const Album = ({ data }) => {
   useEffect(() => {
     setData();
   }, []);
+
+  useEffect(() => {
+    getAlbumSaved(data.id, setAlbumSaved);
+  }, [albumSaved]);
+
+  // useEffect(() => {
+  //   getTracksSaved(
+  //     data.tracks.items.map((i) => i.id).join(","),
+  //     setTracksSaved
+  //   );
+  // }, [tracksSaved]);
 
   const trackItems = (tracks) => {
     const discCount = tracks[tracks.length - 1].disc_number;
@@ -52,7 +82,7 @@ const Album = ({ data }) => {
                   </h2>
                 )}
                 <ul className="divide-dashed divide-y-2">
-                  {disc.map((t) => {
+                  {disc.map((t, idx) => {
                     return (
                       <li
                         key={t.id}
@@ -67,6 +97,21 @@ const Album = ({ data }) => {
                         <p className="text-xs text-gray-500 text-right basis-1/12 px-5">
                           {convertDuration(t.duration_ms)}
                         </p>
+                        <span className="hover:text-mplist px-1">
+                          <AddSVG className="w-5 h-5" />
+                        </span>
+                        <span
+                          className="hover:text-mplist px-1"
+                          onClick={() =>
+                            manageMine(t, tracksSaved, setTracksSaved, idx)
+                          }
+                        >
+                          {tracksStatus[idx] ? (
+                            <CancelSVG className="w-5 h-5" />
+                          ) : (
+                            <SaveSVG className="w-5 h-5" />
+                          )}
+                        </span>
                       </li>
                     );
                   })}
@@ -106,6 +151,25 @@ const Album = ({ data }) => {
                 </div>
                 <span className="text-xs text-slate-500">
                   {`${result.release_date.replace("-", ".").replace("-", ".")}`}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <span className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist">
+                  <AddSVG className="w-5 h-5" />
+                  <span className="ml-1 text-xs">Playlist에 추가</span>
+                </span>
+                <span
+                  className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist"
+                  onClick={() => manageMine(result, albumSaved, setAlbumSaved)}
+                >
+                  {albumSaved ? (
+                    <TrashSVG className="w-5 h-5" />
+                  ) : (
+                    <SaveSVG className="w-5 h-5" />
+                  )}
+                  <span className="ml-1 text-xs">
+                    {albumSaved ? "내 앨범에서 삭제" : "내 앨범에 추가"}
+                  </span>
                 </span>
               </div>
             </div>
