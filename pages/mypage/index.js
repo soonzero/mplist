@@ -31,10 +31,7 @@ const MyPage = () => {
       {result && (
         <Layout title="내 정보">
           <MyProfile info={result.info} />
-          <MyMusic
-            myTracks={result.myTracks}
-            myAlbums={result.myAlbums.items}
-          />
+          <MyMusic myTracks={result.myTracks} myAlbums={result.myAlbums} />
           <PlaylistInMyPage playlists={result.playlists} />
         </Layout>
       )}
