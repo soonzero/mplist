@@ -1,62 +1,69 @@
 import Layout from "../../components/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAPI } from "../../components/useAPI";
+import useAPI, {
+  addCommasToNumber,
+  removeBracket,
+} from "../../functions/common";
+import { managePlaylistFollowing } from "../../functions/playlists";
 import Image from "next/image";
 import Link from "next/link";
-import addCommasToNumber from "../../components/addCommasToNumber";
 import AddSVG from "../../public/add.svg";
 import DeleteSVG from "../../public/delete.svg";
+import Cookies from "js-cookie";
+import ChangeSVG from "../../public/change.svg";
+import ChangePlaylistDetailForm from "../../components/ChangePlaylistDetailForm";
 
-const Playlist = () => {
-  const [result, setResult] = useState();
+export const getServerSideProps = async (context) => {
+  const playlistId = context.params.id;
+  const token = context.req.cookies["mplistToken"];
+  const data = await useAPI(token, "GET", `playlists/${playlistId}`);
+  const { id } = await useAPI(token, "GET", `/me`);
+  const following = await useAPI(
+    token,
+    "GET",
+    `playlists/${playlistId}/followers/contains`,
+    {
+      ids: id,
+    }
+  );
+  return {
+    props: {
+      data,
+      following: following[0],
+      id,
+    },
+  };
+};
+
+const Playlist = ({ data, following, id }) => {
   const router = useRouter();
-  const [following, setFollowing] = useState();
+  const [result, setResult] = useState();
+  const [follow, setFollow] = useState(following);
+  const [changeMode, setChangeMode] = useState(false);
 
   const setData = async () => {
     try {
-      const data = await useAPI("GET", `playlists/${router.query.id}`);
       setResult(data);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const getFollowing = async () => {
+  const getFollow = async () => {
     try {
-      const { id } = await useAPI("GET", `/me`);
-      const result = await useAPI(
+      const modifiedFollow = await useAPI(
+        Cookies.get("mplistToken"),
         "GET",
-        `/playlists/${router.query.id}/followers/contains`,
+        `playlists/${router.query.id}/followers/contains`,
         {
           ids: id,
         }
       );
-      setFollowing(result[0]);
+      setFollow(modifiedFollow[0]);
     } catch (e) {
       console.log(e);
     }
-  };
-
-  const managePlaylistFollowing = async () => {
-    try {
-      if (following) {
-        await useAPI("DELETE", `/playlists/${router.query.id}/followers`);
-        setFollowing(false);
-      } else {
-        await useAPI("PUT", `/playlists/${router.query.id}/followers`, {
-          public: true,
-        });
-        setFollowing(true);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const removeBracket = (item) => {
-    // 괄호 안에 내용물 없앤 string 반환
-    return item.replace(item.slice(item.indexOf("("), item.length), "");
   };
 
   useEffect(() => {
@@ -64,43 +71,59 @@ const Playlist = () => {
   }, []);
 
   useEffect(() => {
-    getFollowing();
-  }, [following]);
+    getFollow();
+  }, [follow]);
 
   return (
     <Layout title="플레이리스트">
       <div className="py-4 flex flex-col text-sm">
         {result && (
           <>
-            <div className="flex rounded-lg border-2 p-4 mb-4">
+            <div className="relative flex rounded-lg border-2 p-4 mb-4">
               <Image
                 src={result.images[0]?.url || `/logo-no-text.svg`}
                 width={250}
                 height={250}
               />
-              <div className="grow flex flex-col px-4 space-y-1">
-                <div>
-                  <h3 className="text-xl font-bold pb-1">{result.name}</h3>
-                  <p>{result.description}</p>
-                  <p>{addCommasToNumber(result.followers.total)} following</p>
-                </div>
+              <div className="grow flex flex-col px-4 space-y-1 py-5">
+                {!changeMode ? (
+                  <div>
+                    <h3 className="text-xl font-bold pb-1">{result.name}</h3>
+                    <p>{removeBracket(result.description)}</p>
+                    <p>{addCommasToNumber(result.followers.total)} following</p>
+                  </div>
+                ) : (
+                  <ChangePlaylistDetailForm
+                    id={result.id}
+                    originName={result.name}
+                    originDesc={result.description}
+                  />
+                )}
                 <div className="grow flex justify-end items-end">
                   <button
                     type="button"
                     className="rounded-full px-5 py-3 bg-black text-white flex hover:bg-mplist"
-                    onClick={managePlaylistFollowing}
+                    onClick={() =>
+                      managePlaylistFollowing(result.id, follow, setFollow)
+                    }
                   >
-                    {following ? (
+                    {follow ? (
                       <DeleteSVG className="h-5 w-5 mr-1" />
                     ) : (
                       <AddSVG className="w-5 h-5 mr-1" />
                     )}
                     <span>
-                      {following ? "Unfollow" : "이 플레이리스트 Follow"}
+                      {follow ? "Unfollow" : "이 플레이리스트 Follow"}
                     </span>
                   </button>
                 </div>
               </div>
+              <span
+                className="absolute top-0 right-0 m-5 cursor-pointer text-gray-400 hover:text-mplist"
+                onClick={() => setChangeMode((prev) => !prev)}
+              >
+                <ChangeSVG className="w-5 h-5" />
+              </span>
             </div>
             <div>
               <ul className="divide-y-2">
