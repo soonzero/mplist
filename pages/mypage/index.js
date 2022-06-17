@@ -3,6 +3,8 @@ import Layout from "../../components/Layout";
 import { useAPI } from "../../components/useAPI";
 import Cookies from "js-cookie";
 import PlaylistInMyPage from "../../components/PlaylistInMyPage";
+import MyProfile from "../../components/MyProfile";
+import MyMusic from "../../components/MyMusic";
 
 const MyPage = () => {
   const token = Cookies.get("mplistToken");
@@ -12,7 +14,9 @@ const MyPage = () => {
     try {
       const info = await useAPI(token, "GET", `/me`);
       const playlists = await useAPI(token, "GET", `/me/playlists`);
-      setResult({ info, playlists });
+      const myTracks = await useAPI(token, "GET", `/me/tracks`);
+      const myAlbums = await useAPI(token, "GET", `/me/albums`);
+      setResult({ info, playlists, myTracks, myAlbums });
     } catch (e) {
       console.log(e);
     }
@@ -27,6 +31,10 @@ const MyPage = () => {
       {result && (
         <Layout title="내 정보">
           <MyProfile info={result.info} />
+          <MyMusic
+            myTracks={result.myTracks}
+            myAlbums={result.myAlbums.items}
+          />
           <PlaylistInMyPage playlists={result.playlists} />
         </Layout>
       )}
