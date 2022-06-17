@@ -32,7 +32,7 @@ const MyPage = () => {
         <Layout title="내 정보">
           <MyProfile info={result.info} />
           <MyMusic myTracks={result.myTracks} myAlbums={result.myAlbums} />
-          <PlaylistInMyPage playlists={result.playlists} />
+          <PlaylistInMyPage id={result.info.id} playlists={result.playlists} />
         </Layout>
       )}
     </>

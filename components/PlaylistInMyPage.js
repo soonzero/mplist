@@ -5,8 +5,11 @@ import ChevronSVG from "../public/chevron-double-right.svg";
 import AddSVG from "../public/add.svg";
 import CreatePlaylistForm from "./CreatePlaylistForm";
 import { createPlaylist } from "../functions/playlists";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-const PlaylistInMyPage = ({ playlists }) => {
+const PlaylistInMyPage = ({ id, playlists }) => {
+  const router = useRouter();
   const [addMode, setAddMode] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState();
@@ -15,13 +18,14 @@ const PlaylistInMyPage = ({ playlists }) => {
   const onClickHandler = async () => {
     if (addMode) {
       if (name?.length > 0) {
-        createPlaylist(
+        await createPlaylist(
           Cookies.get("mplistToken"),
-          result.info.id,
+          id,
           name,
           description,
           checked
         );
+        router.push("/mypage/my-playlists");
       } else {
         setAddMode(false);
       }
