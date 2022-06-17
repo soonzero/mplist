@@ -3,6 +3,8 @@ import { useAPI } from "./useAPI";
 import Cover from "./Cover";
 import PrevSVG from "../public/prev-button.svg";
 import NextSVG from "../public/next-button.svg";
+import Cookies from "js-cookie";
+import classNames from "classnames";
 
 export default function Table({ category, limit, count }) {
   const [tableTopic, setTableTopic] = useState("");
@@ -12,10 +14,15 @@ export default function Table({ category, limit, count }) {
 
   const setData = async () => {
     try {
-      const data = await useAPI("GET", `/browse/${category}`, {
-        country: "KR",
-        limit,
-      });
+      const data = await useAPI(
+        Cookies.get("mplistToken"),
+        "GET",
+        `/browse/${category}`,
+        {
+          country: "KR",
+          limit,
+        }
+      );
       let items, title;
       if (category === "new-releases") {
         title = "신규 앨범";
@@ -56,7 +63,11 @@ export default function Table({ category, limit, count }) {
   return (
     <div className="py-4">
       <h1 className="font-bold text-2xl mb-4">{tableTopic}</h1>
-      <div className="relative grid grid-flow-col grid-rows-1 gap-5">
+      <div
+        className={classNames("relative grid grid-flow-col grid-cols-5 gap-5", {
+          "grid-cols-4": category === "new-releases",
+        })}
+      >
         {table?.map((i) => (
           <Cover key={i.id} category={category} item={i} />
         ))}

@@ -1,5 +1,7 @@
+import Cookies from "js-cookie";
+
 const logout = () => {
-  window.localStorage.removeItem("token");
+  Cookies.remove("mplistToken");
 };
 
 export default logout;

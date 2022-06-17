@@ -3,21 +3,23 @@ import SearchSVG from "../../public/search.svg";
 import Cover from "../../components/Cover";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import searchSomething from "../../components/searchSomething";
+import searchSomething from "../../functions/searchSomething";
+import Cookies from "js-cookie";
 
 const SearchResult = () => {
+  const token = Cookies.get("mplistToken");
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
   const [result, setResult] = useState();
 
   const getData = async () => {
-    const data = await searchSomething(router.query.keyword);
+    const data = await searchSomething(token, router.query.keyword);
     setResult(data);
   };
 
   const search = async (e) => {
     e.preventDefault();
-    const data = await searchSomething(keyword);
+    const data = await searchSomething(token, keyword);
     setResult(data);
   };
 
