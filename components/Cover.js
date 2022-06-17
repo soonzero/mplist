@@ -47,12 +47,14 @@ const Cover = ({ category, item }) => {
         <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 bg-opacity-40 bg-black text-white z-10">
           <span className="font-medium">{data().title}</span>
           {data().artists && (
-            <span>
+            <span className="text-center">
               {data().artists.map((a, idx) => {
                 return (
                   <span key={a.id}>
-                    <span>{a.name}</span>
-                    {idx === data().artists.length - 1 ? "" : ", "}
+                    <div className="inline-block">
+                      {a.name}
+                      <span>{idx != data().artists.length - 1 && ","}</span>
+                    </div>
                   </span>
                 );
               })}
