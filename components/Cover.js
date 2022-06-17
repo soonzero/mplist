@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -42,9 +43,8 @@ const Cover = ({ category, item }) => {
       onMouseLeave={() => setHover(false)}
       onClick={() => onClickHandler(item)}
     >
-      <Image src={data().image} width={640} height={640} />
       {hover && (
-        <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 bg-opacity-40 bg-black text-white z-10">
+        <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 text-white z-10">
           <span className="font-medium">{data().title}</span>
           {data().artists && (
             <span className="text-center">
@@ -62,6 +62,12 @@ const Cover = ({ category, item }) => {
           )}
         </div>
       )}
+      <Image
+        className={classNames({ "blur-sm": hover })}
+        src={data().image}
+        width={640}
+        height={640}
+      />
     </div>
   );
 };
