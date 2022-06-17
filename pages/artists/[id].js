@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useAPI } from "../../components/useAPI";
 import Image from "next/image";
 import Link from "next/link";
-import convertDuration from "../../components/convertDuration";
-import addCommasToNumber from "../../components/addCommasToNumber";
+import convertDuration from "../../functions/convertDuration";
+import addCommasToNumber from "../../functions/addCommasToNumber";
 
 const Artist = () => {
   const [result, setResult] = useState();

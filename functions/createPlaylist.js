@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const createPlaylist = async (id, name, description, checked) => {
+const createPlaylist = async (token, id, name, description, checked) => {
   try {
     const response = await axios({
       method: "POST",
       url: `https://api.spotify.com/v1/users/${id}/playlists`,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       data: {
         name,
