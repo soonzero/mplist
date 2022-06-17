@@ -1,18 +1,26 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { useAPI } from "../../components/useAPI";
-import convertDuration from "../../components/convertDuration";
 import Link from "next/link";
+import useAPI, { convertDuration, manageMine } from "../../functions/common";
 
-const Album = () => {
+export const getServerSideProps = async (context) => {
+  const albumId = context.params.id;
+  const token = context.req.cookies["mplistToken"];
+  const data = await useAPI(token, "GET", `/albums/${albumId}`);
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
+
+const Album = ({ data }) => {
   const [result, setResult] = useState();
-  const router = useRouter();
 
-  const setData = async () => {
+  const setData = () => {
     try {
-      const data = await useAPI("GET", `albums/${router.query.id}`);
       setResult(data);
     } catch (e) {
       console.log(e);
@@ -46,7 +54,10 @@ const Album = () => {
                 <ul className="divide-dashed divide-y-2">
                   {disc.map((t) => {
                     return (
-                      <li className="flex items-center py-3 text-sm cursor-pointer">
+                      <li
+                        key={t.id}
+                        className="relative flex items-center py-3 text-sm cursor-pointer hover:bg-slate-200"
+                      >
                         <p className="px-5 text-right">
                           {t.track_number > 9
                             ? t.track_number
@@ -72,27 +83,31 @@ const Album = () => {
     <Layout title={result?.name}>
       {result && (
         <div className="py-4 flex">
-          <div className="flex-none w-64 h-full flex flex-col items-start border-2 rounded-xl p-4">
+          <div className="h-full flex flex-col items-start border-2 rounded-xl p-4">
             <Image src={result.images[0].url} width={250} height={250} />
-            <div className="mt-5">
-              <h1 className="font-bold">{result.name}</h1>
-              <div>
-                {result.artists.map((artist, idx) => {
-                  return (
-                    <Link href={`/artists/${artist.id}`} key={artist.id}>
-                      <a>
-                        <p className="inline-block cursor-pointer hover:text-mplist">
-                          {artist.name}
-                        </p>
-                        <span>{idx !== result.artists.length - 1 && ", "}</span>
-                      </a>
-                    </Link>
-                  );
-                })}
+            <div className="w-full mt-5">
+              <div className="flex flex-col mb-2">
+                <h1 className="font-bold">{result.name}</h1>
+                <div>
+                  {result.artists.map((artist, idx) => {
+                    return (
+                      <Link href={`/artists/${artist.id}`} key={artist.id}>
+                        <a className="text-sm">
+                          <p className="inline-block cursor-pointer hover:text-mplist">
+                            {artist.name}
+                          </p>
+                          <span>
+                            {idx !== result.artists.length - 1 && ", "}
+                          </span>
+                        </a>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <span className="text-xs text-slate-500">
+                  {`${result.release_date.replace("-", ".").replace("-", ".")}`}
+                </span>
               </div>
-              <p>{`${result.release_date
-                .replace("-", ".")
-                .replace("-", ".")}`}</p>
             </div>
           </div>
           {trackItems(result.tracks.items)}
