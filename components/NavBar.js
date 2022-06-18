@@ -51,13 +51,12 @@ export default function NavBar() {
             return (
               <Link key={i.element} href={i.href}>
                 <a
-                  className={classNames(
-                    "px-4 py-2 text-sm text-gray-600 hover:text-gray-400",
-                    {
-                      "text-mplist":
-                        router.pathname.split("/")[1] === i.href.substring(1),
-                    }
-                  )}
+                  className={classNames("px-4 py-2 text-sm", {
+                    "text-mplist":
+                      router.pathname.split("/")[1] === i.href.substring(1),
+                    "text-gray-600 hover:text-gray-400":
+                      router.pathname.split("/")[1] !== i.href.substring(1),
+                  })}
                 >
                   {i.element}
                 </a>

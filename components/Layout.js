@@ -4,6 +4,7 @@ import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Link from "next/link";
 import AUTH_LINK from "../data/api";
+import Footer from "./Footer";
 
 const Layout = ({ title, children }) => {
   const [display, setDisplay] = useState();
@@ -36,6 +37,7 @@ const Layout = ({ title, children }) => {
           </div>
         )}
       </main>
+      <Footer />
     </>
   );
 };

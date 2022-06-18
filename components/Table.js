@@ -61,7 +61,7 @@ export default function Table({ category, limit, count }) {
   };
 
   return (
-    <div className="py-4">
+    <div className="pt-4 pb-8 last:pb-12">
       <h1 className="font-bold text-2xl mb-4">{tableTopic}</h1>
       <div
         className={classNames("relative grid grid-flow-col grid-cols-5 gap-5", {

@@ -44,7 +44,7 @@ const SearchResult = () => {
           <SearchSVG className="h-8 w-8" />
         </button>
       </form>
-      <div className="grid grid-flow-row grid-cols-5 gap-4 text-sm">
+      <div className="grid grid-flow-row grid-cols-5 gap-4 text-sm pb-12">
         {result?.map((i) => (
           <Cover key={i.id} category="search" item={i} />
         ))}

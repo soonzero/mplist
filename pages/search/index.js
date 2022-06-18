@@ -21,7 +21,7 @@ export default function Music() {
       <Layout title="검색">
         <form
           onSubmit={onSubmitHandler}
-          className="flex items-center justify-center w-full h-[calc(100vh-64px)]"
+          className="flex items-center justify-center w-full h-[calc(100vh-276px)]"
         >
           <input
             type="text"
