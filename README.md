@@ -40,40 +40,66 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 - 앨범
 
   - [앨범 정보 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album)
-  - [내가 저장한 앨범 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-albums)
+
   - [내가 저장한 앨범에 추가](https://developer.spotify.com/documentation/web-api/reference/#/operations/save-albums-user)
+
   - [내가 저장한 앨범에서 삭제](https://developer.spotify.com/documentation/web-api/reference/#/operations/remove-albums-user)
+
   - [내가 저장한 앨범 포함 여부](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-albums)
+
   - [신규 앨범 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-new-releases)
 
 - 아티스트
+
   - [아티스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artist)
+
   - [아티스트 팔로우](https://developer.spotify.com/documentation/web-api/reference/#/operations/follow-artists-users)
+
   - [아티스트 언팔로우](https://developer.spotify.com/documentation/web-api/reference/#/operations/unfollow-artists-users)
+
   - [아티스트 팔로우 여부 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-current-user-follows)
+
   - [아티스트의 앨범 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-albums)
+
   - [아티스트의 인기 트랙 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-top-tracks)
+
   - [관련 아티스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-related-artists)
+
 - 트랙
-  - [내가 저장한 트랙 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-tracks)
+
   - [내가 저장한 트랙에 추가](https://developer.spotify.com/documentation/web-api/reference/#/operations/save-tracks-user)
+
   - [내가 저장한 트랙에서 삭제](https://developer.spotify.com/documentation/web-api/reference/#/operations/remove-tracks-user)
+
   - [내가 저장한 트랙 포함 여부](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-tracks)
+
 - 플레이리스트
 
   - [플레이리스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlist)
+
   - [주요 플레이리스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-featured-playlists)
+
   - [플레이리스트 팔로우](https://developer.spotify.com/documentation/web-api/reference/#/operations/follow-playlist)
+
   - [플레이리스트 언팔로우](https://developer.spotify.com/documentation/web-api/reference/#/operations/unfollow-playlist)
+
   - [플레이리스트 상세 정보 수정](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlist)
+
   - [플레이리스트 팔로우 여부 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-current-user-follows)
 
 - 프로필
 
   - [내 프로필 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile)
+
+  - [내가 저장한 앨범 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-albums)
+
+  - [내가 저장한 트랙 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-tracks)
+
   - [내가 팔로우한 플레이리스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists)
 
 - [검색](https://developer.spotify.com/documentation/web-api/reference/#/operations/search)
+
+<br />
 
 - 2022.06.18 기준 26개
 
