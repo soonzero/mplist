@@ -9,10 +9,10 @@ import { managePlaylistFollowing } from "../../functions/playlists";
 import Image from "next/image";
 import Link from "next/link";
 import AddSVG from "../../public/add.svg";
-import DeleteSVG from "../../public/delete.svg";
 import Cookies from "js-cookie";
 import ChangeSVG from "../../public/change.svg";
 import ChangePlaylistDetailForm from "../../components/ChangePlaylistDetailForm";
+import FollowBtn from "../../components/FollowBtn";
 
 export const getServerSideProps = async (context) => {
   const playlistId = context.params.id;
@@ -99,24 +99,12 @@ const Playlist = ({ data, following, id }) => {
                     originDesc={result.description}
                   />
                 )}
-                <div className="grow flex justify-end items-end">
-                  <button
-                    type="button"
-                    className="rounded-full px-5 py-3 bg-black text-white flex hover:bg-mplist"
-                    onClick={() =>
-                      managePlaylistFollowing(result.id, follow, setFollow)
-                    }
-                  >
-                    {follow ? (
-                      <DeleteSVG className="h-5 w-5 mr-1" />
-                    ) : (
-                      <AddSVG className="w-5 h-5 mr-1" />
-                    )}
-                    <span>
-                      {follow ? "Unfollow" : "이 플레이리스트 Follow"}
-                    </span>
-                  </button>
-                </div>
+                <FollowBtn
+                  followed={follow}
+                  func={() =>
+                    managePlaylistFollowing(result.id, follow, setFollow)
+                  }
+                />
               </div>
               <span
                 className="absolute top-0 right-0 m-5 cursor-pointer text-gray-400 hover:text-mplist"
