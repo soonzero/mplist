@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import useAPI from "../../functions/common";
+import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import PlaylistInMyPage from "../../components/PlaylistInMyPage";
 import MyProfile from "../../components/MyProfile";
@@ -12,10 +12,10 @@ const MyPage = () => {
 
   const setData = async () => {
     try {
-      const info = await useAPI(token, "GET", `/me`);
-      const playlists = await useAPI(token, "GET", `/me/playlists`);
-      const myTracks = await useAPI(token, "GET", `/me/tracks`);
-      const myAlbums = await useAPI(token, "GET", `/me/albums`);
+      const info = await apiUse(token, "GET", `/me`);
+      const playlists = await apiUse(token, "GET", `/me/playlists`);
+      const myTracks = await apiUse(token, "GET", `/me/tracks`);
+      const myAlbums = await apiUse(token, "GET", `/me/albums`);
       setResult({ info, playlists, myTracks, myAlbums });
     } catch (e) {
       console.log(e);

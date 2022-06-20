@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import useAPI, {
+import apiUse, {
   convertDuration,
   manageMine,
   getAlbumSaved,
@@ -19,11 +19,11 @@ import Modal from "../../components/Modal";
 export const getServerSideProps = async (context) => {
   const albumId = context.params.id;
   const token = context.req.cookies["mplistToken"];
-  const data = await useAPI(token, "GET", `/albums/${albumId}`);
-  const albumStatus = await useAPI(token, "GET", `/me/albums/contains`, {
+  const data = await apiUse(token, "GET", `/albums/${albumId}`);
+  const albumStatus = await apiUse(token, "GET", `/me/albums/contains`, {
     ids: albumId,
   });
-  const tracksStatus = await useAPI(token, "GET", `/me/tracks/contains`, {
+  const tracksStatus = await apiUse(token, "GET", `/me/tracks/contains`, {
     ids: data.tracks.items.map((i) => i.id).join(","),
   });
 

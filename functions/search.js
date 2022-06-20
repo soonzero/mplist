@@ -1,7 +1,7 @@
-import useAPI from "./common";
+import apiUse from "./common";
 
 const search = async (token, keyword) => {
-  const data = await useAPI(token, "GET", `/search`, {
+  const data = await apiUse(token, "GET", `/search`, {
     q: keyword,
     type: "track,artist,album",
   });

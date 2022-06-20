@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAPI from "./common";
+import apiUse from "./common";
 import Cookies from "js-cookie";
 
 export const createPlaylist = async (token, id, name, description, checked) => {
@@ -53,7 +53,7 @@ export const changePlaylistDetail = async (
 
 export const managePlaylistFollowing = async (id, follow, setFollow) => {
   try {
-    await useAPI(
+    await apiUse(
       Cookies.get("mplistToken"),
       `${follow ? "DELETE" : "PUT"}`,
       `/playlists/${id}/followers`
@@ -66,7 +66,7 @@ export const managePlaylistFollowing = async (id, follow, setFollow) => {
 
 export const unfollowPlaylist = async (playlistId, setMyPlaylists) => {
   try {
-    await useAPI(
+    await apiUse(
       Cookies.get("mplistToken"),
       "DELETE",
       `/playlists/${playlistId}/followers`
@@ -79,7 +79,7 @@ export const unfollowPlaylist = async (playlistId, setMyPlaylists) => {
 
 export const getMyPlaylists = async (setMyPlaylists) => {
   try {
-    const data = await useAPI(
+    const data = await apiUse(
       Cookies.get("mplistToken"),
       "GET",
       `/me/playlists`

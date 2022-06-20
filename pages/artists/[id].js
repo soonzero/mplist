@@ -1,6 +1,6 @@
 import Layout from "../../components/Layout";
 import { useState, useEffect } from "react";
-import useAPI, {
+import apiUse, {
   addCommasToNumber,
   convertDuration,
 } from "../../functions/common";
@@ -13,16 +13,16 @@ import Cookies from "js-cookie";
 export const getServerSideProps = async (context) => {
   const artistId = context.query.id;
   const token = context.req.cookies["mplistToken"];
-  const info = await useAPI(token, "GET", `artists/${artistId}`);
-  const artistFollowed = await useAPI(token, "GET", `me/following/contains`, {
+  const info = await apiUse(token, "GET", `artists/${artistId}`);
+  const artistFollowed = await apiUse(token, "GET", `me/following/contains`, {
     ids: artistId,
     type: "artist",
   });
-  const albums = await useAPI(token, "GET", `artists/${artistId}/albums`, {
+  const albums = await apiUse(token, "GET", `artists/${artistId}/albums`, {
     include_groups: "album,compilation",
     limit: 9,
   });
-  const topTracks = await useAPI(
+  const topTracks = await apiUse(
     token,
     "GET",
     `artists/${artistId}/top-tracks`,
@@ -30,7 +30,7 @@ export const getServerSideProps = async (context) => {
       market: "KR",
     }
   );
-  const relatedArtists = await useAPI(
+  const relatedArtists = await apiUse(
     token,
     "GET",
     `artists/${artistId}/related-artists`
@@ -58,7 +58,7 @@ const Artist = ({
 
   const getFollow = async () => {
     try {
-      const modifiedFollow = await useAPI(
+      const modifiedFollow = await apiUse(
         Cookies.get("mplistToken"),
         "GET",
         `me/following/contains`,
@@ -170,7 +170,7 @@ const Artist = ({
                   <ul className="flex p-5 space-x-6">
                     {data.relatedArtists.artists.splice(0, 6).map((a) => {
                       return (
-                        <Link id={a.id} href={`/artists/${a.id}`}>
+                        <Link key={a.id} href={`/artists/${a.id}`}>
                           <li className="flex flex-col justify-center items-center hover:font-medium">
                             <Image
                               className="rounded-full cursor-pointer hover:opacity-50"

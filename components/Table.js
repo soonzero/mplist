@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useAPI from "../functions/common";
+import apiUse from "../functions/common";
 import Cover from "./Cover";
 import PrevSVG from "../public/prev-button.svg";
 import NextSVG from "../public/next-button.svg";
@@ -14,7 +14,7 @@ export default function Table({ category, limit, count }) {
 
   const setData = async () => {
     try {
-      const data = await useAPI(
+      const data = await apiUse(
         Cookies.get("mplistToken"),
         "GET",
         `/browse/${category}`,

@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import useAPI, {
+import apiUse, {
   addCommasToNumber,
   removeBracket,
 } from "../../functions/common";
@@ -17,9 +17,9 @@ import FollowBtn from "../../components/FollowBtn";
 export const getServerSideProps = async (context) => {
   const playlistId = context.params.id;
   const token = context.req.cookies["mplistToken"];
-  const data = await useAPI(token, "GET", `playlists/${playlistId}`);
-  const { id } = await useAPI(token, "GET", `/me`);
-  const following = await useAPI(
+  const data = await apiUse(token, "GET", `playlists/${playlistId}`);
+  const { id } = await apiUse(token, "GET", `/me`);
+  const following = await apiUse(
     token,
     "GET",
     `playlists/${playlistId}/followers/contains`,
@@ -52,7 +52,7 @@ const Playlist = ({ data, following, id }) => {
 
   const getFollow = async () => {
     try {
-      const modifiedFollow = await useAPI(
+      const modifiedFollow = await apiUse(
         Cookies.get("mplistToken"),
         "GET",
         `playlists/${router.query.id}/followers/contains`,

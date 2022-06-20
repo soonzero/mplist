@@ -21,12 +21,12 @@ export const manageMine = async (item, status, setStatus, idx) => {
   const token = Cookies.get("mplistToken");
   try {
     if (item.type === "album") {
-      await useAPI(token, `${status ? "DELETE" : "PUT"}`, `/me/albums`, {
+      await apiUse(token, `${status ? "DELETE" : "PUT"}`, `/me/albums`, {
         ids: item.id,
       });
       setStatus(!status);
     } else if (item.type === "track") {
-      await useAPI(token, `${status[idx] ? "DELETE" : "PUT"}`, `/me/tracks`, {
+      await apiUse(token, `${status[idx] ? "DELETE" : "PUT"}`, `/me/tracks`, {
         ids: item.id,
       });
     }
@@ -36,7 +36,7 @@ export const manageMine = async (item, status, setStatus, idx) => {
 };
 
 export const getAlbumSaved = async (id, setAlbumSaved) => {
-  const result = await useAPI(
+  const result = await apiUse(
     Cookies.get("mplistToken"),
     "GET",
     `/me/albums/contains`,
@@ -50,7 +50,7 @@ export const getAlbumSaved = async (id, setAlbumSaved) => {
 // 실시간 트랙 저장 여부 변경 아직 구현 안 됨
 
 // export const getTracksSaved = async (id, setTracksSaved) => {
-//   const result = await useAPI(
+//   const result = await apiUse(
 //     Cookies.get("mplistToken"),
 //     "GET",
 //     `/me/tracks/contains`,
@@ -61,7 +61,7 @@ export const getAlbumSaved = async (id, setAlbumSaved) => {
 //   setTracksSaved(result);
 // };
 
-const useAPI = async (token, method, url, params) => {
+const apiUse = async (token, method, url, params) => {
   const { data } = await axios({
     method,
     baseURL: "https://api.spotify.com/v1/",
@@ -74,4 +74,4 @@ const useAPI = async (token, method, url, params) => {
   return data;
 };
 
-export default useAPI;
+export default apiUse;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import useAPI from "../../functions/common";
+import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,7 +12,7 @@ const SavedTracks = () => {
 
   const setData = async () => {
     try {
-      const myTracks = await useAPI(token, "GET", `/me/tracks`);
+      const myTracks = await apiUse(token, "GET", `/me/tracks`);
       setResult(myTracks);
     } catch (e) {
       console.log(e);
@@ -24,7 +24,7 @@ const SavedTracks = () => {
   }, []);
 
   const deleteAndGetData = async (id) => {
-    await useAPI(token, "DELETE", `/me/tracks`, {
+    await apiUse(token, "DELETE", `/me/tracks`, {
       ids: id,
     });
     setData();

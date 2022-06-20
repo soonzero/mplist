@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
-import useAPI from "../../functions/common";
+import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +12,7 @@ const SavedAlbums = () => {
 
   const setData = async () => {
     try {
-      const myAlbums = await useAPI(token, "GET", `/me/albums`);
+      const myAlbums = await apiUse(token, "GET", `/me/albums`);
       setResult(myAlbums);
     } catch (e) {
       console.log(e);
@@ -24,7 +24,7 @@ const SavedAlbums = () => {
   }, []);
 
   const deleteAndGetData = async (id) => {
-    await useAPI(token, "DELETE", `/me/albums`, {
+    await apiUse(token, "DELETE", `/me/albums`, {
       ids: id,
     });
     setData();
