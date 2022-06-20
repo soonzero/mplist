@@ -117,7 +117,10 @@ const Playlist = ({ data, following, id }) => {
               <ul className="divide-y-2">
                 {result.tracks.items.map((t) => {
                   return (
-                    <li className="flex items-center justify-start pt-2 pb-1">
+                    <li
+                      key={t.id}
+                      className="flex items-center justify-start pt-2 pb-1"
+                    >
                       <Link
                         className="px-2"
                         href={`/albums/${t.track.album.id}`}
@@ -136,7 +139,7 @@ const Playlist = ({ data, following, id }) => {
                       <span className="basis-3/12 truncate">
                         {t.track.artists.map((a, idx) => {
                           return (
-                            <Link href={`/artists/${a.id}`}>
+                            <Link key={a.id} href={`/artists/${a.id}`}>
                               <span className="cursor-pointer hover:text-mplist hover:underline">
                                 {a.name}
                                 {idx === t.track.artists.length - 1 ? "" : ", "}

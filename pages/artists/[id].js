@@ -124,11 +124,8 @@ const Artist = ({
                     </h2>
                     <ul className="grid grid-flow-col grid-cols-3 grid-rows-3">
                       {data.albums.items.map((a) => (
-                        <Link href={`/albums/${a.id}`}>
-                          <li
-                            key={a.id}
-                            className="flex items-center justify-start p-1 cursor-pointer hover:bg-mplist hover:text-white"
-                          >
+                        <Link key={a.id} href={`/albums/${a.id}`}>
+                          <li className="flex items-center justify-start p-1 cursor-pointer hover:bg-mplist hover:text-white">
                             <Image
                               src={a.images[0].url}
                               width={50}
@@ -173,11 +170,8 @@ const Artist = ({
                   <ul className="flex p-5 space-x-6">
                     {data.relatedArtists.artists.splice(0, 6).map((a) => {
                       return (
-                        <Link href={`/artists/${a.id}`}>
-                          <li
-                            id={a.id}
-                            className="flex flex-col justify-center items-center hover:font-medium"
-                          >
+                        <Link id={a.id} href={`/artists/${a.id}`}>
+                          <li className="flex flex-col justify-center items-center hover:font-medium">
                             <Image
                               className="rounded-full cursor-pointer hover:opacity-50"
                               src={a.images[0]?.url}

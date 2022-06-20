@@ -37,9 +37,8 @@ const SavedAlbums = () => {
         {result?.total > 0 ? (
           <ul className="grid grid-cols-2">
             {result.items.map((i) => {
-              console.log(i);
               return (
-                <div className="hover:bg-mplist">
+                <div key={i.id} className="hover:bg-mplist">
                   <li className="flex items-center p-3">
                     <Link href={`/albums/${i.album.id}`}>
                       <Image
@@ -55,7 +54,7 @@ const SavedAlbums = () => {
                         <p>
                           {i.album.artists.map((a, idx) => {
                             return (
-                              <span>
+                              <span key={a.id}>
                                 {a.name}
                                 {i.album.artists.length === 1
                                   ? ""

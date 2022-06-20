@@ -38,7 +38,7 @@ const SavedTracks = () => {
           <ul className="flex flex-col divide-y">
             {result.items.map((i) => {
               return (
-                <div className="hover:bg-mplist">
+                <div key={i.id} className="hover:bg-mplist">
                   <li className="flex items-center p-1">
                     <Link href={`/albums/${i.track.album.id}`}>
                       <Image
@@ -54,7 +54,7 @@ const SavedTracks = () => {
                         <p className="text-sm">
                           {i.track.album.artists.map((a, idx) => {
                             return (
-                              <span>
+                              <span key={a.id}>
                                 {a.name}
                                 {i.track.album.artists.length === 1
                                   ? ""
