@@ -1,12 +1,24 @@
 import classNames from "classnames";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import ChevronSVG from "../public/chevron-double-right.svg";
 
 const MySaved = ({ things, data }) => {
+  const router = useRouter();
+
+  const moveToMore = () => {
+    router.push(
+      `/mypage/${things === "albums" ? "saved-albums" : "saved-tracks"}`
+    );
+  };
+
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center border-b mx-2">
-        <h2 className="flex justify-start items-center font-semibold pb-2 hover:text-mplist cursor-pointer">
+        <h2
+          className="flex justify-start items-center font-semibold pb-2 hover:text-mplist cursor-pointer"
+          onClick={moveToMore}
+        >
           {`내가 저장한 ${things === "albums" ? "앨범" : "트랙"}`}
           <span className="ml-1">
             <ChevronSVG className="w-5 h-5" />
