@@ -12,6 +12,9 @@ import AddSVG from "../../public/add.svg";
 import SaveSVG from "../../public/save.svg";
 import TrashSVG from "../../public/trash.svg";
 import CancelSVG from "../../public/cancel.svg";
+import LyricsSVG from "../../public/lyrics.svg";
+import DetailSVG from "../../public/detail.svg";
+import Modal from "../../components/Modal";
 
 export const getServerSideProps = async (context) => {
   const albumId = context.params.id;
@@ -37,6 +40,8 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
   const [result, setResult] = useState();
   const [albumSaved, setAlbumSaved] = useState(albumStatus);
   const [tracksSaved, setTracksSaved] = useState(tracksStatus);
+  const [modal, setModal] = useState(false);
+  const [track, setTrack] = useState();
 
   const setData = () => {
     try {
@@ -44,6 +49,11 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const showDetail = (track) => {
+    setTrack(track);
+    setModal(true);
   };
 
   useEffect(() => {
@@ -88,15 +98,24 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
                         key={t.id}
                         className="relative flex items-center py-3 text-sm cursor-pointer hover:bg-slate-200"
                       >
-                        <p className="px-5 text-right">
+                        <p className="basis-1/24 text-center">
                           {t.track_number > 9
                             ? t.track_number
                             : `0${t.track_number}`}
                         </p>
+                        <span
+                          className="hover:text-mplist basis-1/20"
+                          onClick={() => showDetail(t)}
+                        >
+                          <LyricsSVG className="h-5 w-5 mx-auto" />
+                        </span>
                         <p className="grow text-black">{t.name}</p>
                         <p className="text-xs text-gray-500 text-right basis-1/12 px-5">
                           {convertDuration(t.duration_ms)}
                         </p>
+                        <span className="hover:text-mplist px-1">
+                          <DetailSVG className="w-5 h-5" />
+                        </span>
                         <span className="hover:text-mplist px-1">
                           <AddSVG className="w-5 h-5" />
                         </span>
@@ -125,59 +144,66 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
   };
 
   return (
-    <Layout title={result?.name}>
-      {result && (
-        <div className="py-4 flex">
-          <div className="h-full flex flex-col items-start border-2 rounded-xl p-4">
-            <Image src={result.images[0].url} width={250} height={250} />
-            <div className="w-full mt-5">
-              <div className="flex flex-col mb-2">
-                <h1 className="font-bold">{result.name}</h1>
-                <div>
-                  {result.artists.map((artist, idx) => {
-                    return (
-                      <Link href={`/artists/${artist.id}`} key={artist.id}>
-                        <a className="text-sm">
-                          <p className="inline-block cursor-pointer hover:text-mplist">
-                            {artist.name}
-                          </p>
-                          <span>
-                            {idx !== result.artists.length - 1 && ", "}
-                          </span>
-                        </a>
-                      </Link>
-                    );
-                  })}
-                </div>
-                <span className="text-xs text-slate-500">
-                  {`${result.release_date.replace("-", ".").replace("-", ".")}`}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <span className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist">
-                  <AddSVG className="w-5 h-5" />
-                  <span className="ml-1 text-xs">Playlist에 추가</span>
-                </span>
-                <span
-                  className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist"
-                  onClick={() => manageMine(result, albumSaved, setAlbumSaved)}
-                >
-                  {albumSaved ? (
-                    <TrashSVG className="w-5 h-5" />
-                  ) : (
-                    <SaveSVG className="w-5 h-5" />
-                  )}
-                  <span className="ml-1 text-xs">
-                    {albumSaved ? "내 앨범에서 삭제" : "내 앨범에 추가"}
+    <>
+      <Layout title={result?.name}>
+        {result && (
+          <div className="py-4 flex">
+            <div className="h-full flex flex-col items-start border-2 rounded-xl p-4">
+              <Image src={result.images[0].url} width={250} height={250} />
+              <div className="w-full mt-5">
+                <div className="flex flex-col mb-2">
+                  <h1 className="font-bold">{result.name}</h1>
+                  <div>
+                    {result.artists.map((artist, idx) => {
+                      return (
+                        <Link href={`/artists/${artist.id}`} key={artist.id}>
+                          <a className="text-sm">
+                            <p className="inline-block cursor-pointer hover:text-mplist">
+                              {artist.name}
+                            </p>
+                            <span>
+                              {idx !== result.artists.length - 1 && ", "}
+                            </span>
+                          </a>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                  <span className="text-xs text-slate-500">
+                    {`${result.release_date
+                      .replace("-", ".")
+                      .replace("-", ".")}`}
                   </span>
-                </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <span className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist">
+                    <AddSVG className="w-5 h-5" />
+                    <span className="ml-1 text-xs">Playlist에 추가</span>
+                  </span>
+                  <span
+                    className="flex items-center justify-center py-2 bg-slate-400 text-white rounded-full cursor-pointer hover:bg-mplist"
+                    onClick={() =>
+                      manageMine(result, albumSaved, setAlbumSaved)
+                    }
+                  >
+                    {albumSaved ? (
+                      <TrashSVG className="w-5 h-5" />
+                    ) : (
+                      <SaveSVG className="w-5 h-5" />
+                    )}
+                    <span className="ml-1 text-xs">
+                      {albumSaved ? "내 앨범에서 삭제" : "내 앨범에 추가"}
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
+            {trackItems(result.tracks.items)}
           </div>
-          {trackItems(result.tracks.items)}
-        </div>
-      )}
-    </Layout>
+        )}
+        {modal && <Modal setModal={setModal} track={track} />}
+      </Layout>
+    </>
   );
 };
 
