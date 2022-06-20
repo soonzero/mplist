@@ -6,3 +6,5 @@ const SCOPE = process.env.NEXT_PUBLIC_SCOPE;
 const AUTH_LINK = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
 
 export default AUTH_LINK;
+
+// 2022.06.21 mplist.netlify.app deploy 하면서 AUTH_LINK 변경
