@@ -38,7 +38,7 @@ export default function NavBar() {
         <div className="flex flex-row items-center">
           <Link href="/">
             <a className="flex items-center mr-10">
-              <LogoSVG className="h-12 w-12" />
+              <LogoSVG className="h-12 w-12 hover:opacity-80" />
             </a>
           </Link>
           {[

@@ -21,7 +21,7 @@ const Footer = () => {
           <ul className="flex space-x-4">
             <li>
               <a href="https://github.com/soonzero/mplist" target="_blank">
-                <GitHubSVG className="fill-[#24292F]" />
+                <GitHubSVG className="fill-[#24292F] hover:opacity-80" />
               </a>
             </li>
             <li>
@@ -29,7 +29,7 @@ const Footer = () => {
                 href="https://www.notion.so/MPList-37103c94cbf14920a3e4bbae4a8d209b"
                 target="_blank"
               >
-                <NotionSVG className="fill-[#111111]" />
+                <NotionSVG className="fill-[#111111] hover:opacity-80" />
               </a>
             </li>
           </ul>
