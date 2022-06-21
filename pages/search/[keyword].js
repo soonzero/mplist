@@ -37,14 +37,14 @@ const SearchResult = () => {
           type="text"
           defaultValue={router.query.keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          className="outline-none text-2xl border-b-2 px-2 py-1 border-b-mplist w-64 placeholder:italic placeholder:text-slate-300"
+          className="outline-none text-2xl border-b-2 px-2 py-1 border-b-mplist tablet:w-48 mobile:w-32 mobile:text-lg tablet:text-xl placeholder:italic placeholder:text-slate-300"
           placeholder="Search..."
         />
         <button type="submit" className="p-2">
-          <SearchSVG className="h-8 w-8" />
+          <SearchSVG className="h-8 w-8 mobile:w-6 mobile:h-6" />
         </button>
       </form>
-      <div className="grid grid-flow-row grid-cols-5 gap-4 text-sm pb-12">
+      <div className="grid grid-flow-row gap-4 text-sm pb-12 mobile:grid-cols-1 mobile-lg:grid-cols-2 tablet:grid-cols-4 laptop:grid-cols-5">
         {result?.map((i) => (
           <Cover key={i.id} category="search" item={i} />
         ))}
