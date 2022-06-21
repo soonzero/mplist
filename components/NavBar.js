@@ -90,7 +90,7 @@ export default function NavBar() {
                   { href: "/search", element: "Search" },
                 ].map((i) => {
                   return (
-                    <Link href={i.href}>
+                    <Link key={i.id} href={i.href}>
                       <a>
                         <li className="px-5 py-2 tablet:hidden bg-white hover:bg-mplist hover:text-white border-b">
                           {i.element}
