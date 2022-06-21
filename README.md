@@ -1,6 +1,6 @@
 # MPList
 
-<img src="https://user-images.githubusercontent.com/95613159/174387704-b25bf019-3fc2-45ce-91ab-174021156e3c.png" alt="MPList">
+<img src="https://user-images.githubusercontent.com/95613159/174541625-54b26022-03d8-4235-a4ad-e574d5511a42.png" alt="MPList">
 
 ## 📄 프로젝트 설명
 
@@ -20,9 +20,7 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 - 기획 및 초안 : 2022. 06. 06
 
-- 예상 프로젝트 마감 기간: 2022. 06. 07 ~ 2022. 06. 19
-
-- 실제 개발 기간 : 2022. 06. 07 ~ 현재 진행 중
+- 개발 기간 : 2022. 06. 07 ~ 2022.06.22
 
 <br />
 
@@ -35,7 +33,9 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 <br />
 
-## 📑 사용한 API ([Spotify API](https://developer.spotify.com/documentation/web-api/reference/#/))
+## 📑 사용한 API
+
+### [Spotify API](https://developer.spotify.com/documentation/web-api/reference/#/)
 
 - 앨범
 
@@ -99,9 +99,13 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 - [검색](https://developer.spotify.com/documentation/web-api/reference/#/operations/search)
 
+### lyrics.ovh
+
+- [가사 조회](https://lyricsovh.docs.apiary.io/#)
+
 <br />
 
-- 2022.06.18 기준 26개
+- 2022.06.20 기준 27개
 
 <br />
 
