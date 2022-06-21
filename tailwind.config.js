@@ -10,6 +10,13 @@ module.exports = {
         "1/20": "5%",
         "1/16": "6.25%",
       },
+      screens: {
+        mobile: "320px",
+        tablet: "768px",
+        laptop: "1024px",
+        monitor: "1440px",
+        "4K": "2560px",
+      },
       colors: {
         mplist: "#D2CAF6",
         spotify: "#1ED760",
