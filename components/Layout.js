@@ -29,7 +29,7 @@ const Layout = ({ title, children }) => {
         ) : (
           <div className="text-4xl flex items-center justify-center h-[calc(100vh-64px)]">
             <Link href={AUTH_LINK}>
-              <a className="font-bold hover:text-mplist">
+              <a className="font-bold hover:text-mplist mobile:text-base tablet:text-2xl laptop:text-3xl monitor:text-4xl text-center">
                 로그인 후에 이용 가능합니다. <br />
                 여기를 눌러 로그인해주세요.
               </a>
