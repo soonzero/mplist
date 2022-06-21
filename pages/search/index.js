@@ -26,11 +26,11 @@ export default function Music() {
           <input
             type="text"
             onChange={(e) => setKeyword(e.target.value)}
-            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-mplist w-64 placeholder:italic placeholder:text-slate-300"
+            className="outline-none text-2xl border-b-2 px-2 py-1 border-b-mplist mobile:w-48 tablet:w-64 mobile:text-lg tablet:text-xl placeholder:italic placeholder:text-slate-300"
             placeholder="Search..."
           />
           <button type="submit" className="p-2">
-            <SearchSVG className="h-8 w-8" />
+            <SearchSVG className="mobile:w-6 mobile:h-6 tablet:w-8 tablet:h-8" />
           </button>
         </form>
       </Layout>

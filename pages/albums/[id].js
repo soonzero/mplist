@@ -78,13 +78,13 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
       discArray[i] = tracks.filter((t) => t.disc_number === i + 1);
     }
     return (
-      <div className="flex-1 ml-6 divide-y-2 text-slate-700">
+      <div className="flex-1 divide-y-2 text-slate-700 mobile:mt-6 tablet:ml-6">
         {discArray.map((disc, idx) => {
           return (
             <>
               <div className="pt-5 first:pt-0">
                 {result.album_type === "album" && (
-                  <h2 className="flex justify-between items-end px-5 py-2 border-b-2 border-b-mplist">
+                  <h2 className="flex justify-between items-end py-2 border-b-2 border-b-mplist mobile:px-0 tablet:px-5">
                     CD{idx + 1}
                     <span className="text-sm">
                       {disc.length} {disc.length === 1 ? `track` : `tracks`}
@@ -109,7 +109,7 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
                         >
                           <LyricsSVG className="h-5 w-5 mx-auto" />
                         </span>
-                        <p className="grow text-black">{t.name}</p>
+                        <p className="grow text-black truncate">{t.name}</p>
                         <p className="text-xs text-gray-500 text-right basis-1/12 px-5">
                           {convertDuration(t.duration_ms)}
                         </p>
@@ -147,9 +147,9 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
     <>
       <Layout title={result?.name}>
         {result && (
-          <div className="py-4 flex">
-            <div className="h-full flex flex-col items-start border-2 rounded-xl p-4">
-              <Image src={result.images[0].url} width={250} height={250} />
+          <div className="py-4 flex mobile:flex-col mobile-lg:flex-col tablet:flex-row">
+            <div className="h-full flex flex-col border-2 rounded-xl p-4 mobile:mr-auto">
+              <Image src={result.images[0].url} width={325} height={325} />
               <div className="w-full mt-5">
                 <div className="flex flex-col mb-2">
                   <h1 className="font-bold">{result.name}</h1>

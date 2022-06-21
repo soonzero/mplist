@@ -37,13 +37,13 @@ const PlaylistInMyPage = ({ id, playlists }) => {
   return (
     <div className="py-4">
       <Link href="/mypage/my-playlists">
-        <h1 className="flex items-center font-bold text-3xl mb-4 hover:text-mplist cursor-pointer w-max">
+        <h1 className="flex items-center font-bold text-3xl mb-4 hover:text-mplist cursor-pointer w-max mobile:text-2xl">
           플레이리스트
           {playlists.total > 0 && <ChevronSVG className="h-5 w-5 ml-2" />}
         </h1>
       </Link>
       {playlists.total > 0 ? (
-        <div className="grid grid-cols-6 gap-2 mb-5 border-y">
+        <div className="grid tablet:grid-cols-6 tablet:gap-2 mb-5 border-y mobile:grid-cols-2 mobile:gap-1">
           {playlists.items.map((i) => {
             return (
               <div

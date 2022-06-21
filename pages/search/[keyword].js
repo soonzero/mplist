@@ -41,7 +41,7 @@ const SearchResult = () => {
           placeholder="Search..."
         />
         <button type="submit" className="p-2">
-          <SearchSVG className="h-8 w-8 mobile:w-6 mobile:h-6" />
+          <SearchSVG className="mobile:w-6 mobile:h-6 tablet:w-8 tablet:h-8" />
         </button>
       </form>
       <div className="grid grid-flow-row gap-4 text-sm pb-12 mobile:grid-cols-1 mobile-lg:grid-cols-2 tablet:grid-cols-4 laptop:grid-cols-5">

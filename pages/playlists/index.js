@@ -4,7 +4,7 @@ import Table from "../../components/Table";
 const Playlists = () => {
   return (
     <Layout title="플레이리스트">
-      <Table category="featured-playlists" limit="10" count="5" />
+      <Table category="featured-playlists" limit="8" count="4" />
     </Layout>
   );
 };
