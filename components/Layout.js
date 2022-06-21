@@ -23,7 +23,7 @@ const Layout = ({ title, children }) => {
         <title>{title} | MPList</title>
       </Head>
       <NavBar />
-      <main className="flex flex-col max-w-screen-2xl mx-auto px-8">
+      <main className="flex flex-col max-w-screen-2xl mx-auto px-8 mobile:px-4 tablet:px-8">
         {display ? (
           children
         ) : (

@@ -34,7 +34,7 @@ export default function NavBar() {
 
   return (
     <nav className="sticky top-0 bg-white shadow-sm z-10">
-      <div className="flex flex-row h-16 items-center max-w-screen-2xl mx-auto justify-between px-8">
+      <div className="flex flex-row h-16 items-center max-w-screen-2xl mx-auto justify-between px-8 mobile:px-4 tablet:px-8">
         <div className="flex flex-row items-center">
           <Link href="/">
             <a className="flex items-center mr-6">
