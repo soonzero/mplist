@@ -35,7 +35,7 @@ const SavedAlbums = () => {
       <div className="py-4">
         <h1 className="text-2xl font-bold p-2 border-b">내가 저장한 앨범</h1>
         {result?.total > 0 ? (
-          <ul className="grid grid-cols-2">
+          <ul className="mobile:flex mobile:flex-col laptop:grid laptop:grid-cols-2">
             {result.items.map((i) => {
               return (
                 <div key={i.id} className="hover:bg-mplist">
@@ -44,13 +44,15 @@ const SavedAlbums = () => {
                       <Image
                         className="cursor-pointer"
                         src={i.album.images[0]?.url}
-                        width={150}
-                        height={150}
+                        width={100}
+                        height={100}
                       />
                     </Link>
                     <div className="grow flex justify-between items-center">
                       <div className="grow ml-4 flex flex-col">
-                        <h2 className="font-semibold mb-1">{i.album.name}</h2>
+                        <h2 className="font-semibold truncate mb-1">
+                          {i.album.name}
+                        </h2>
                         <p>
                           {i.album.artists.map((a, idx) => {
                             return (

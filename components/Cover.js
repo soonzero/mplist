@@ -44,8 +44,8 @@ const Cover = ({ category, item }) => {
       onClick={() => onClickHandler(item)}
     >
       {hover && (
-        <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 text-white z-10">
-          <span className="font-bold mobile:text-sm tablet:text-base laptop:text-lg">
+        <div className="absolute flex flex-col px-3 items-center justify-center w-full h-full top-0 left-0 text-white z-10">
+          <span className="font-bold mobile:text-sm tablet:text-base laptop:text-lg truncate">
             {data().title}
           </span>
           {data().artists && (

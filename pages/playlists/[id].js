@@ -44,6 +44,7 @@ const Playlist = ({ data, following, id }) => {
 
   const setData = async () => {
     try {
+      console.log(data);
       setResult(data);
     } catch (e) {
       console.log(e);
@@ -79,17 +80,21 @@ const Playlist = ({ data, following, id }) => {
       <div className="py-4 flex flex-col text-sm">
         {result && (
           <>
-            <div className="relative flex rounded-lg border-2 p-4 mb-4">
+            <div className="relative flex rounded-lg border-2 p-4 mb-4 mobile:flex-col mobile-lg:flex-row">
               <Image
                 src={result.images[0]?.url || `/logo-no-text.svg`}
-                width={250}
-                height={250}
+                width={325}
+                height={325}
               />
-              <div className="grow flex flex-col px-4 space-y-1 py-5">
+              <div className="grow flex flex-col space-y-1 mobile:mt-4 mobile-lg:ml-4 mobile-lg:mt-0">
                 {!changeMode ? (
                   <div>
-                    <h3 className="text-xl font-bold pb-1">{result.name}</h3>
-                    <p>{removeBracket(result.description)}</p>
+                    <h3 className="font-bold pb-1 mobile:text-xl mobile-lg:text-lg tablet:text-xl">
+                      {result.name}
+                    </h3>
+                    <p className="mobile:text-base mobile-lg:text-sm tablet:text-base">
+                      {removeBracket(result.description)}
+                    </p>
                     <p>{addCommasToNumber(result.followers.total)} following</p>
                   </div>
                 ) : (
@@ -106,12 +111,14 @@ const Playlist = ({ data, following, id }) => {
                   }
                 />
               </div>
-              <span
-                className="absolute top-0 right-0 m-5 cursor-pointer text-gray-400 hover:text-mplist"
-                onClick={() => setChangeMode((prev) => !prev)}
-              >
-                <ChangeSVG className="w-5 h-5" />
-              </span>
+              {(result.collaborative || result.owner.id == id) && (
+                <span
+                  className="absolute top-0 right-0 cursor-pointer text-gray-400 hover:text-mplist mobile:top-2/3 mobile: m-3 mobile-lg:top-0 mobile-lg:m-5"
+                  onClick={() => setChangeMode((prev) => !prev)}
+                >
+                  <ChangeSVG className="w-5 h-5" />
+                </span>
+              )}
             </div>
             <div>
               <ul className="divide-y-2">
@@ -125,18 +132,16 @@ const Playlist = ({ data, following, id }) => {
                         className="px-2"
                         href={`/albums/${t.track.album.id}`}
                       >
-                        <a className="cursor-pointer hover:bg-opacity-50 w-12 h-12">
-                          <Image
-                            src={t.track.album.images[0].url}
-                            width={50}
-                            height={50}
-                          />
-                        </a>
+                        <Image
+                          src={t.track.album.images[0].url}
+                          width={50}
+                          height={50}
+                        />
                       </Link>
-                      <span className="basis-5/12 px-2 truncate">
+                      <span className="grow basis-5/12 px-2 truncate mobile:text-xs mobile-lg:text-sm">
                         {t.track.name}
                       </span>
-                      <span className="basis-3/12 truncate">
+                      <span className="basis-3/12 truncate mobile:text-xs mobile-lg:text-sm">
                         {t.track.artists.map((a, idx) => {
                           return (
                             <Link key={a.id} href={`/artists/${a.id}`}>
@@ -149,7 +154,7 @@ const Playlist = ({ data, following, id }) => {
                         })}
                       </span>
                       <Link href={`/albums/${t.track.album.id}`}>
-                        <span className="text-xs basis-3/12 truncate cursor-pointer hover:text-mplist hover:underline px-2">
+                        <span className="text-xs basis-3/12 truncate cursor-pointer hover:text-mplist hover:underline px-2 mobile:hidden tablet:block">
                           {t.track.album.name}
                         </span>
                       </Link>
