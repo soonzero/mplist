@@ -45,15 +45,19 @@ const Cover = ({ category, item }) => {
     >
       {hover && (
         <div className="absolute flex flex-col items-center justify-center w-full h-full top-0 left-0 text-white z-10">
-          <span className="font-medium">{data().title}</span>
+          <span className="font-bold mobile:text-sm tablet:text-base laptop:text-lg">
+            {data().title}
+          </span>
           {data().artists && (
             <span className="text-center">
               {data().artists.map((a, idx) => {
                 return (
                   <span key={a.id}>
-                    <div className="inline-block">
+                    <div className="inline-block mobile:text-xs tablet:text-sm laptop:text-base">
                       {a.name}
-                      <span>{idx != data().artists.length - 1 && ","}</span>
+                      <span className="whitespace-pre-wrap">
+                        {idx != data().artists.length - 1 && `, `}
+                      </span>
                     </div>
                   </span>
                 );

@@ -62,37 +62,33 @@ export default function Table({ category, limit, count }) {
 
   return (
     <div className="pt-4 pb-8 last:pb-12">
-      <h1 className="font-bold text-2xl mb-4">{tableTopic}</h1>
-      <div
-        className={classNames("relative grid grid-flow-col grid-cols-5 gap-5", {
-          "grid-cols-4": category === "new-releases",
-        })}
-      >
+      <h1 className="relative flex justify-between font-bold mobile:text-lg tablet:text-2xl mb-4">
+        {tableTopic}
+        {table?.length > 0 && (
+          <div className="flex space-x-2">
+            <button
+              id="prev"
+              className="flex items-center justify-center cursor-pointer border rounded-full w-8 h-8 disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={controlPage}
+              disabled={page === 0}
+            >
+              <PrevSVG className="h-5 w-5" />
+            </button>
+            <button
+              id="next"
+              className="flex items-center justify-center cursor-pointer border rounded-full w-8 h-8 disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={controlPage}
+              disabled={page === limit / count - 1}
+            >
+              <NextSVG className="h-5 w-5" />
+            </button>
+          </div>
+        )}
+      </h1>
+      <div className="grid grid-flow-col grid-cols-2 grid-rows-2 gap-2 tablet:grid-cols-4 tablet:grid-rows-1">
         {table?.map((i) => (
           <Cover key={i.id} category={category} item={i} />
         ))}
-        {table?.length > 0 && (
-          <>
-            {page !== 0 && (
-              <span
-                id="prev"
-                className="absolute flex items-center -left-7 cursor-pointer h-full hover:bg-mplist hover:text-white hover:opacity-50"
-                onClick={controlPage}
-              >
-                <PrevSVG className="h-5 w-5" />
-              </span>
-            )}
-            {page !== limit / count - 1 && (
-              <span
-                id="next"
-                className="absolute flex items-center -right-7 cursor-pointer h-full  hover:bg-mplist hover:text-white hover:opacity-50"
-                onClick={controlPage}
-              >
-                <NextSVG className="h-5 w-5" />
-              </span>
-            )}
-          </>
-        )}
       </div>
     </div>
   );
