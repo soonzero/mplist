@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import Link from "next/link";
 import AUTH_LINK from "../data/api";
 import Footer from "./Footer";
@@ -22,7 +22,7 @@ const Layout = ({ title, children }) => {
       <Head>
         <title>{title} | MPList</title>
       </Head>
-      <NavBar />
+      <Header />
       <main className="flex flex-col max-w-screen-2xl mx-auto px-8 mobile:px-4 tablet:px-8">
         {display ? (
           children
