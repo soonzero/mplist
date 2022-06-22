@@ -20,7 +20,9 @@ const Logout = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen">
-      <LogoSVG className="w-1/4 h-1/4" />
+      <span className="w-1/4 h-1/4 mb-5">
+        <LogoSVG className="w-full h-full" />
+      </span>
       <div className="flex flex-col items-center justify-center">
         <h1>로그아웃이 완료되었어요.</h1>
         <p>10초 뒤 메인 페이지로 이동합니다.</p>
