@@ -89,3 +89,40 @@ export const getMyPlaylists = async (setMyPlaylists) => {
     console.log(e);
   }
 };
+
+export const addItemToMyPlaylist = async (playlistId, itemUri, setModal) => {
+  try {
+    await apiUse(
+      Cookies.get("mplistToken"),
+      "POST",
+      `/playlists/${playlistId}/tracks`,
+      {
+        uris: itemUri,
+      }
+    );
+    setModal(false);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const removeItemFromMyPlaylist = async (playlistId, uri) => {
+  try {
+    await axios({
+      method: "DELETE",
+      url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+      headers: {
+        Authorization: `Bearer ${Cookies.get("mplistToken")}`,
+      },
+      data: {
+        tracks: [
+          {
+            uri,
+          },
+        ],
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};

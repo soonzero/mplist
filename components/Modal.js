@@ -1,29 +1,48 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import LogoSVG from "../public/logo-no-text.svg";
-import Loading from "../components/Loading";
+import Lyrics from "../components/Lyrics";
 import CloseSVG from "../public/close.svg";
+import apiUse from "../functions/common";
+import Cookies from "js-cookie";
+import AddPlaylist from "./AddPlaylist";
 
-const Modal = ({ setModal, track }) => {
+const Modal = ({ mode, setModal, data }) => {
+  console.log(mode, data);
   let didCancel = false;
   const [lyrics, setLyrics] = useState(``);
+  const [playlists, setPlaylists] = useState([]);
   const [error, setError] = useState(false);
 
   const getData = async () => {
-    try {
-      const { data } = await axios({
-        method: "GET",
-        url: `https://api.lyrics.ovh/v1/${track.artists[0].name}/${
-          track.name.split("(")[0]
-        }`,
-      });
-      if (!didCancel) {
-        console.log(data.lyrics);
-        setLyrics(data.lyrics);
+    if (mode === "lyrics") {
+      try {
+        const { result } = await axios({
+          method: "GET",
+          url: `https://api.lyrics.ovh/v1/${data.artists[0].name}/${
+            data.name.split("(")[0]
+          }`,
+        });
+        if (!didCancel) {
+          setLyrics(result.lyrics);
+        }
+      } catch (e) {
+        setError(true);
+        console.log(e);
       }
-    } catch (e) {
-      setError(true);
-      console.log(e);
+    } else if (mode === "addTrack") {
+      try {
+        const { id } = await apiUse(Cookies.get("mplistToken"), "GET", `/me`);
+        const { items } = await apiUse(
+          Cookies.get("mplistToken"),
+          "GET",
+          `/me/playlists`
+        );
+        setPlaylists(items.filter((i) => i.collaborative || i.owner.id === id));
+      } catch (e) {
+        setError(true);
+        console.log(e);
+      }
     }
   };
 
@@ -43,11 +62,11 @@ const Modal = ({ setModal, track }) => {
         className="flex items-center justify-center w-screen h-screen fixed inset-0 z-40 bg-black bg-opacity-20"
         onClick={() => setModal(false)}
       />
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-96 max-w-xl w-1/2 h-1/2 bg-white rounded-md z-50 overflow-hidden">
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-96 max-w-xl mobile:w-11/12 tablet:w-2/3 mobile:h-2/3 bg-white rounded-md z-50 overflow-hidden">
         <div className="sticky top-0 p-3 border-b flex items-center">
           <div className="flex items-center">
             <LogoSVG className="mr-3" />
-            <span className="font-semibold">{track.name}</span>
+            <span className="font-semibold">{data.name}</span>
           </div>
           <span className="grow flex items-start justify-end">
             <CloseSVG
@@ -56,9 +75,15 @@ const Modal = ({ setModal, track }) => {
             />
           </span>
         </div>
-        <div className="h-[calc(100%-64px)] whitespace-pre-line overflow-y-scroll px-4 py-2">
-          {lyrics ? lyrics : error ? "가사를 찾을 수 없습니다." : <Loading />}
-        </div>
+        {mode === "lyrics" && <Lyrics lyrics={lyrics} error={error} />}
+        {mode === "addTrack" && (
+          <AddPlaylist
+            playlists={playlists}
+            data={data.uri}
+            error={error}
+            setModal={setModal}
+          />
+        )}
       </div>
     </>
   );
