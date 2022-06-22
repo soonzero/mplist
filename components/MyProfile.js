@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const MyProfile = ({ info }) => {
   return (
-    <div className="py-4 flex flex-col mb-8">
+    <section className="py-4 flex flex-col mb-8">
       <h1 className="font-bold text-3xl mb-4 mobile:text-2xl">내 프로필</h1>
-      <div className="flex mobile:flex-col tablet:flex-row">
+      <figure className="flex mobile:flex-col tablet:flex-row">
         <Image
           src={info.images[0]?.url || `/profile.svg`}
           width={200}
@@ -46,8 +46,8 @@ const MyProfile = ({ info }) => {
             </tr>
           </thead>
         </table>
-      </div>
-    </div>
+      </figure>
+    </section>
   );
 };
 

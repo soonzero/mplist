@@ -13,7 +13,7 @@ const MySaved = ({ things, data }) => {
   };
 
   return (
-    <div className="flex flex-col mobile:mb-3">
+    <article className="flex flex-col mobile:mb-3">
       <div className="flex justify-between items-center border-b mx-2">
         <h2
           className="flex justify-start items-center font-semibold pb-2 hover:text-mplist cursor-pointer"
@@ -66,7 +66,7 @@ const MySaved = ({ things, data }) => {
           </span>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 
