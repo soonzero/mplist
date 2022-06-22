@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import apiUse from "../functions/common";
 import Cover from "./Cover";
-import PrevSVG from "../public/prev-button.svg";
-import NextSVG from "../public/next-button.svg";
 import Cookies from "js-cookie";
-import classNames from "classnames";
+import { NextBtn, PrevBtn } from "./Buttons";
 
 export default function Table({ category, limit, count }) {
   const [tableTopic, setTableTopic] = useState("");
@@ -23,6 +21,7 @@ export default function Table({ category, limit, count }) {
           limit,
         }
       );
+
       let items, title;
       if (category === "new-releases") {
         title = "신규 앨범";
@@ -61,27 +60,18 @@ export default function Table({ category, limit, count }) {
   };
 
   return (
-    <div className="pt-4 pb-8 last:pb-12">
+    <section className="pt-4 pb-8 last:pb-12">
       <h1 className="relative flex justify-between font-bold mobile:text-lg tablet:text-2xl mb-4">
         {tableTopic}
         {table?.length > 0 && (
           <div className="flex space-x-2">
-            <button
-              id="prev"
-              className="flex items-center justify-center cursor-pointer border rounded-full w-8 h-8 disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={controlPage}
-              disabled={page === 0}
-            >
-              <PrevSVG className="h-5 w-5" />
-            </button>
-            <button
-              id="next"
-              className="flex items-center justify-center cursor-pointer border rounded-full w-8 h-8 disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={controlPage}
-              disabled={page === limit / count - 1}
-            >
-              <NextSVG className="h-5 w-5" />
-            </button>
+            <PrevBtn page={page} controlPage={controlPage} />
+            <NextBtn
+              page={page}
+              controlPage={controlPage}
+              limit={limit}
+              count={count}
+            />
           </div>
         )}
       </h1>
@@ -90,6 +80,6 @@ export default function Table({ category, limit, count }) {
           <Cover key={i.id} category={category} item={i} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
