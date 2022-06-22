@@ -1,6 +1,6 @@
 # MPList
 
-<img src="https://user-images.githubusercontent.com/95613159/174541625-54b26022-03d8-4235-a4ad-e574d5511a42.png" alt="MPList">
+<img src="https://user-images.githubusercontent.com/95613159/175045939-ce402cd2-d926-49da-bc37-bd46a4967f16.png" alt="MPList">
 
 ## 📄 프로젝트 설명
 
@@ -18,9 +18,11 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 ## 🗓 프로젝트 진행 기간
 
-- 기획 및 초안 : 2022. 06. 06
+- 기획 및 초안: 2022. 06. 06
 
-- 개발 기간 : 2022. 06. 07 ~ 2022.06.22
+- 개발 기간: 2022. 06. 07 ~ 2022. 06. 22
+
+- 리팩토링 및 추가 기능 개발: 2022. 06. 23 ~
 
 <br />
 
@@ -87,6 +89,10 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
   - [플레이리스트 팔로우 여부 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-current-user-follows)
 
+  - [플레이리스트에 트랙 추가](https://developer.spotify.com/documentation/web-api/reference/#/operations/add-tracks-to-playlist)
+
+  - [플레이리스트에서 트랙 제거](https://developer.spotify.com/documentation/web-api/reference/#/operations/remove-tracks-playlist)
+
 - 프로필
 
   - [내 프로필 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile)
@@ -97,6 +103,8 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
   - [내가 팔로우한 플레이리스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists)
 
+  - [내가 좋아하는 트랙/아티스트 조회](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks)
+
 - [검색](https://developer.spotify.com/documentation/web-api/reference/#/operations/search)
 
 ### lyrics.ovh
@@ -105,7 +113,7 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 <br />
 
-- 2022.06.20 기준 27개
+- 2022.06.22 기준 29개 연동 완료
 
 <br />
 
