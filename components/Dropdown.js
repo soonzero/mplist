@@ -6,28 +6,20 @@ const Dropdown = ({ logout }) => {
     <ul className="absolute top-10 right-0 z-30 w-max overflow-hidden rounded-lg border text-sm mobile:text-xs tablet:text-sm">
       {navMenu.map((i) => {
         return (
-          <li>
-            <Link key={i.id} href={i.href}>
-              <a>
-                <li className="px-5 py-2 tablet:hidden bg-white hover:bg-mplist hover:text-white border-b">
-                  {i.element}
-                </li>
-              </a>
-            </Link>
-          </li>
+          <Link key={i.id} href={i.href}>
+            <li className="text-left pl-3 pr-6 py-2 tablet:hidden bg-white hover:bg-mplist hover:text-white border-b">
+              {i.element}
+            </li>
+          </Link>
         );
       })}
-      <li>
-        <Link href="/mypage">
-          <a>
-            <li className="px-5 py-2 bg-white hover:bg-mplist hover:text-white border-b">
-              마이 페이지
-            </li>
-          </a>
-        </Link>
-      </li>
+      <Link href="/mypage">
+        <li className="text-left pl-3 pr-6 py-2 bg-white hover:bg-mplist hover:text-white border-b">
+          마이 페이지
+        </li>
+      </Link>
       <li
-        className="px-5 py-2 bg-white hover:bg-mplist hover:text-white"
+        className="text-left pl-3 pr-6 py-2 bg-white hover:bg-mplist hover:text-white"
         onClick={logout}
       >
         로그아웃
