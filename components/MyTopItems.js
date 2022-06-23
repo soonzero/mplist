@@ -14,7 +14,7 @@ const MyTopItems = ({ topTracks, topArtists }) => {
                 <ul className="flex flex-wrap justify-center items-center">
                   {topArtists.items.map((a) => {
                     return (
-                      <Link href={`/artist/${a.id}`}>
+                      <Link key={a.id} href={`/artist/${a.id}`}>
                         <li className="flex flex-col justify-center items-center text-center p-2">
                           <Image
                             className="rounded-full"
@@ -36,7 +36,10 @@ const MyTopItems = ({ topTracks, topArtists }) => {
                 <ul>
                   {topTracks.items.map((t) => {
                     return (
-                      <li className="flex flex-col justify-center items-center py-2 first:pt-0 last:pb-0">
+                      <li
+                        key={t.id}
+                        className="flex flex-col justify-center items-center py-2 first:pt-0 last:pb-0"
+                      >
                         <Link href={`/albums/${t.track.album.id}`}>
                           <Image
                             className="cursor-pointer"

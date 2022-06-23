@@ -16,7 +16,7 @@ const NavBar = ({ pathname }) => {
         </li>
         {navMenu.map((i) => {
           return (
-            <li>
+            <li key={i.id}>
               <Link key={i.element} href={i.href}>
                 <a
                   className={classNames(

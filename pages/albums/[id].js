@@ -90,7 +90,7 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
       <div className="grow divide-y-2 text-slate-700 mobile:mt-6 tablet:mt-0 tablet:ml-6">
         {discArray.map((disc, idx) => {
           return (
-            <div className="pt-5 first:pt-0">
+            <div key={disc.id} className="pt-5 first:pt-0">
               {result.album_type === "album" && (
                 <h2 className="flex justify-between items-end py-2 border-b-2 border-b-mplist mobile:px-0 tablet:px-5">
                   CD{idx + 1}

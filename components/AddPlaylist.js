@@ -14,6 +14,7 @@ const AddPlaylist = ({ playlists, data, error, setModal }) => {
             {playlists.map((p) => {
               return (
                 <li
+                  key={p.id}
                   className="flex items-center cursor-pointer p-2 hover:bg-slate-100"
                   onClick={() => addItemToMyPlaylist(p.id, data, setModal)}
                 >
