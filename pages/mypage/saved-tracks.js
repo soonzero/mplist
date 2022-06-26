@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Link from "next/link";

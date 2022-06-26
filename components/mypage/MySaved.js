@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ChevronSVG from "../public/images/chevron-double-right.svg";
+import ChevronSVG from "../../public/images/chevron-double-right.svg";
 
 const MySaved = ({ things, data }) => {
   const router = useRouter();

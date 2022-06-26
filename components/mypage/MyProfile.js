@@ -6,7 +6,7 @@ const MyProfile = ({ info }) => {
       <h1 className="font-bold text-3xl mb-4 mobile:text-2xl">내 프로필</h1>
       <figure className="flex mobile:flex-col tablet:flex-row">
         <Image
-          src={info.images[0]?.url || `/profile.svg`}
+          src={info.images[0]?.url || `/images/profile.svg`}
           width={200}
           height={200}
         />

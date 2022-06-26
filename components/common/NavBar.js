@@ -1,7 +1,7 @@
-import LogoSVG from "../public/images/logo-no-text.svg";
+import LogoSVG from "../../public/images/logo-no-text.svg";
 import classNames from "classnames";
 import Link from "next/link";
-import navMenu from "../data/navMenu";
+import navMenu from "../../data/navMenu";
 
 const NavBar = ({ pathname }) => {
   return (

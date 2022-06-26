@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ChevronSVG from "../public/images/chevron-double-right.svg";
-import AddSVG from "../public/images/add.svg";
+import ChevronSVG from "../../public/images/chevron-double-right.svg";
+import AddSVG from "../../public/images/add.svg";
 import CreatePlaylistForm from "./CreatePlaylistForm";
-import { createPlaylist } from "../functions/playlists";
+import { createPlaylist } from "../../functions/playlists";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
@@ -52,7 +52,7 @@ const PlaylistInMyPage = ({ id, playlists }) => {
               >
                 <Link href={`/playlists/${i.id}`}>
                   <Image
-                    src={i.images[0]?.url || `/logo-no-text.svg`}
+                    src={i.images[0]?.url || `/images/logo-no-text.svg`}
                     height={250}
                     width={250}
                   />

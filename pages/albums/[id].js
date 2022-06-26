@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import Link from "next/link";
 import apiUse, {
   convertDuration,
   getAlbumSaved,
   getTracksSaved,
 } from "../../functions/common";
-import Modal from "../../components/Modal";
+import Modal from "../../components/common/Modal";
 import {
   AddToMyPlaylistSmallBtn,
   AddToPlaylistLargeBtn,
@@ -15,7 +15,7 @@ import {
   LyricsBtn,
   SaveToMineLargeBtn,
   SaveToMineSmallBtn,
-} from "../../components/Buttons";
+} from "../../components/common/Buttons";
 
 export const getServerSideProps = async (context) => {
   const albumId = context.params.id;

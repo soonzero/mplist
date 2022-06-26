@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
-import CheckSVG from "../public/images/check.svg";
+import CheckSVG from "../../public/images/check.svg";
 import classNames from "classnames";
-import { changePlaylistDetail } from "../functions/playlists";
+import { changePlaylistDetail } from "../../functions/playlists";
 import { useRouter } from "next/router";
 
 const ChangePlaylistDetailForm = ({ id, originName, originDesc }) => {

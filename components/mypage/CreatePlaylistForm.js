@@ -1,4 +1,4 @@
-import CheckSVG from "../public/images/check.svg";
+import CheckSVG from "../../public/images/check.svg";
 import classNames from "classnames";
 
 const CreatePlaylistForm = ({

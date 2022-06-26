@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import apiUse, {
@@ -9,14 +9,14 @@ import { managePlaylistFollowing } from "../../functions/playlists";
 import Image from "next/image";
 import Link from "next/link";
 import Cookies from "js-cookie";
-import ChangePlaylistDetailForm from "../../components/ChangePlaylistDetailForm";
+import ChangePlaylistDetailForm from "../../components/playlist/ChangePlaylistDetailForm";
 import {
   AddToMyPlaylistSmallBtn,
   ChangeBtn,
   FollowBtn,
   RemoveFromMyPlaylistSmallBtn,
-} from "../../components/Buttons";
-import Artists from "../../components/Artists";
+} from "../../components/common/Buttons";
+import Artists from "../../components/common/Artists";
 
 export const getServerSideProps = async (context) => {
   const playlistId = context.params.id;
@@ -70,7 +70,7 @@ const Playlist = ({ data, following, id }) => {
       <section className="py-4 flex flex-col text-sm">
         <div className="relative flex rounded-lg border-2 p-4 mb-4 mobile:flex-col mobile-lg:flex-row">
           <Image
-            src={data.images[0]?.url || `/logo-no-text.svg`}
+            src={data.images[0]?.url || `/images/logo-no-text.svg`}
             width={325}
             height={325}
           />

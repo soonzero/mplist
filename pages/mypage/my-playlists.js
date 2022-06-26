@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import DeleteSVG from "../../public/images/delete.svg";
 import Link from "next/link";
 import { unfollowPlaylist, getMyPlaylists } from "../../functions/playlists";
@@ -27,7 +27,7 @@ const MyPlaylist = () => {
                   <div className="flex w-full">
                     <Image
                       className="mr-5"
-                      src={i.images[0]?.url || `/logo-no-text.svg`}
+                      src={i.images[0]?.url || `/images/logo-no-text.svg`}
                       width={100}
                       height={100}
                     />

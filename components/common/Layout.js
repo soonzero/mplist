@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import Header from "../components/Header";
+import Header from "./Header";
 import Link from "next/link";
-import AUTH_LINK from "../data/api";
+import AUTH_LINK from "../../data/api";
 import Footer from "./Footer";
 
 const Layout = ({ title, children }) => {

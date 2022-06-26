@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
-import PlaylistInMyPage from "../../components/PlaylistInMyPage";
-import MyProfile from "../../components/MyProfile";
-import MyMusic from "../../components/MyMusic";
-import MyTopItems from "../../components/MyTopItems";
+import PlaylistInMyPage from "../../components/mypage/PlaylistInMyPage";
+import MyProfile from "../../components/mypage/MyProfile";
+import MyMusic from "../../components/mypage/MyMusic";
+import MyTopItems from "../../components/mypage/MyTopItems";
 
 const MyPage = () => {
   const token = Cookies.get("mplistToken");

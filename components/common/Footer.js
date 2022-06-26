@@ -1,6 +1,6 @@
-import GitHubSVG from "../public/images/github.svg";
-import NotionSVG from "../public/images/notion.svg";
-import LogoText from "../public/images/logo-text.svg";
+import GitHubSVG from "../../public/images/github.svg";
+import NotionSVG from "../../public/images/notion.svg";
+import LogoText from "../../public/images/logo-text.svg";
 
 const Footer = () => {
   return (

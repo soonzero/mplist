@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import LogoSVG from "../public/images/logo-no-text.svg";
-import Lyrics from "../components/Lyrics";
-import CloseSVG from "../public/images/close.svg";
-import apiUse from "../functions/common";
+import LogoSVG from "../../public/images/logo-no-text.svg";
+import Lyrics from "../albums/Lyrics";
+import CloseSVG from "../../public/images/close.svg";
+import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
-import AddPlaylist from "./AddPlaylist";
+import AddPlaylist from "../mypage/AddPlaylist";
 
 const Modal = ({ mode, setModal, data }) => {
-  console.log(mode, data);
   let didCancel = false;
   const [lyrics, setLyrics] = useState(``);
   const [playlists, setPlaylists] = useState([]);

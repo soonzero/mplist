@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Loading from "./Loading";
-import { addItemToMyPlaylist } from "../functions/playlists";
+import Loading from "../common/Loading";
+import { addItemToMyPlaylist } from "../../functions/playlists";
 
 const AddPlaylist = ({ playlists, data, error, setModal }) => {
   return (
@@ -19,7 +19,7 @@ const AddPlaylist = ({ playlists, data, error, setModal }) => {
                   onClick={() => addItemToMyPlaylist(p.id, data, setModal)}
                 >
                   <Image
-                    src={p.images[0]?.url || `/logo-no-text.svg`}
+                    src={p.images[0]?.url || `/images/logo-no-text.svg`}
                     width={75}
                     height={75}
                   />

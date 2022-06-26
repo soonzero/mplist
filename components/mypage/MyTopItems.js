@@ -18,7 +18,7 @@ const MyTopItems = ({ topTracks, topArtists }) => {
                         <li className="flex flex-col justify-center items-center text-center p-2">
                           <Image
                             className="rounded-full"
-                            src={a.images[0].url || `/logo-no-text.svg`}
+                            src={a.images[0].url || `/images/logo-no-text.svg`}
                             width={150}
                             height={150}
                           />
@@ -43,7 +43,7 @@ const MyTopItems = ({ topTracks, topArtists }) => {
                         <Link href={`/albums/${t.track.album.id}`}>
                           <Image
                             className="cursor-pointer"
-                            src={t.images[0]?.url || `/logo-no-text.svg`}
+                            src={t.images[0]?.url || `/images/logo-no-text.svg`}
                             width={50}
                             height={50}
                           />

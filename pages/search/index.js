@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import SearchSVG from "../../public/images/search.svg";
 
 export default function Music() {

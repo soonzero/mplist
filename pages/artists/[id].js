@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+import Layout from "../../components/common/Layout";
 import { useState, useEffect } from "react";
 import apiUse, {
   addCommasToNumber,
@@ -6,7 +6,7 @@ import apiUse, {
 } from "../../functions/common";
 import Image from "next/image";
 import Link from "next/link";
-import { FollowBtn } from "../../components/Buttons";
+import { FollowBtn } from "../../components/common/Buttons";
 import { manageArtistFollowing } from "../../functions/artists";
 import Cookies from "js-cookie";
 
@@ -163,7 +163,9 @@ const Artist = ({
                           <li className="flex flex-col justify-center items-center hover:font-medium p-2">
                             <Image
                               className="rounded-full cursor-pointer hover:opacity-50"
-                              src={a.images[0]?.url || `/logo-no-text.svg`}
+                              src={
+                                a.images[0]?.url || `/images/logo-no-text.svg`
+                              }
                               width={100}
                               height={100}
                             />

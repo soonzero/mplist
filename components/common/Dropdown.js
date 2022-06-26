@@ -1,4 +1,4 @@
-import navMenu from "../data/navMenu";
+import navMenu from "../../data/navMenu";
 import Link from "next/link";
 
 const Dropdown = ({ logout }) => {

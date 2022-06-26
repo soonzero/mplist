@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import apiUse from "../functions/common";
-import Cover from "./Cover";
+import apiUse from "../../functions/common";
+import Cover from "../common/Cover";
 import Cookies from "js-cookie";
 import { NextBtn, PrevBtn } from "./Buttons";
 

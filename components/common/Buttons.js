@@ -1,23 +1,23 @@
 import Link from "next/link";
-import AUTH_LINK from "../data/api";
-import SpotifySVG from "../public/images/spotify.svg";
-import ProfileSVG from "../public/images/profile.svg";
+import AUTH_LINK from "../../data/api";
+import SpotifySVG from "../../public/images/spotify.svg";
+import ProfileSVG from "../../public/images/profile.svg";
 import Dropdown from "./Dropdown";
-import PrevSVG from "../public/images/prev-button.svg";
-import NextSVG from "../public/images/next-button.svg";
-import TrashSVG from "../public/images/trash.svg";
-import AddSVG from "../public/images/add.svg";
-import SaveSVG from "../public/images/save.svg";
-import CancelSVG from "../public/images/cancel.svg";
-import LyricsSVG from "../public/images/lyrics.svg";
-import DetailSVG from "../public/images/detail.svg";
-import CheckSVG from "../public/images/check-circle.svg";
-import DeleteSVG from "../public/images/delete.svg";
-import ChangeSVG from "../public/images/change.svg";
-import RemoveSVG from "../public/images/remove.svg";
-import { manageMine } from "../functions/common";
+import PrevSVG from "../../public/images/prev-button.svg";
+import NextSVG from "../../public/images/next-button.svg";
+import TrashSVG from "../../public/images/trash.svg";
+import AddSVG from "../../public/images/add.svg";
+import SaveSVG from "../../public/images/save.svg";
+import CancelSVG from "../../public/images/cancel.svg";
+import LyricsSVG from "../../public/images/lyrics.svg";
+import DetailSVG from "../../public/images/detail.svg";
+import CheckSVG from "../../public/images/check-circle.svg";
+import DeleteSVG from "../../public/images/delete.svg";
+import ChangeSVG from "../../public/images/change.svg";
+import RemoveSVG from "../../public/images/remove.svg";
+import { manageMine } from "../../functions/common";
 import { useState } from "react";
-import { removeItemFromMyPlaylist } from "../functions/playlists";
+import { removeItemFromMyPlaylist } from "../../functions/playlists";
 
 export const LoginWithSpotifyBtn = () => {
   return (

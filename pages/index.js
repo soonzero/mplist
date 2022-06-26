@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import Table from "../components/Table";
+import Layout from "../components/common/Layout";
+import Table from "../components/common/Table";
 
 export default function Home() {
   return (

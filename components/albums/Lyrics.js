@@ -1,4 +1,4 @@
-import Loading from "../components/Loading";
+import Loading from "../common/Loading";
 
 const Lyrics = ({ lyrics, error }) => {
   return (
