@@ -29,6 +29,16 @@ export const manageMine = async (item, status, setStatus, idx) => {
       await apiUse(token, `${status[idx] ? "DELETE" : "PUT"}`, `/me/tracks`, {
         ids: item.id,
       });
+      let newStatus = [];
+      status.map((item, index) => {
+        if (idx === index) {
+          newStatus.push(!item);
+        } else {
+          newStatus.push(item);
+        }
+        return newStatus;
+      });
+      setStatus(newStatus);
     }
   } catch (e) {
     console.log(e);

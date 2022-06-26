@@ -117,19 +117,13 @@ export const SaveToMineLargeBtn = ({ result, albumSaved, setAlbumSaved }) => {
   );
 };
 
-export const SaveToMineSmallBtn = ({
-  t,
-  tracksSaved,
-  setTracksSaved,
-  tracksStatus,
-  idx,
-}) => {
+export const SaveToMineSmallBtn = ({ t, tracksSaved, setTracksSaved, idx }) => {
   return (
     <button
       className="hover:text-mplist px-1"
       onClick={() => manageMine(t, tracksSaved, setTracksSaved, idx)}
     >
-      {tracksStatus[idx] ? (
+      {tracksSaved[idx] ? (
         <CancelSVG className="w-5 h-5" />
       ) : (
         <SaveSVG className="w-5 h-5" />

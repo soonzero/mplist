@@ -73,13 +73,6 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
     getAlbumSaved(data.id, setAlbumSaved);
   }, [albumSaved]);
 
-  // useEffect(() => {
-  //   getTracksSaved(
-  //     data.tracks.items.map((i) => i.id).join(","),
-  //     setTracksSaved
-  //   );
-  // }, [tracksSaved]);
-
   const trackItems = (tracks) => {
     const discCount = tracks[tracks.length - 1].disc_number;
     let discArray = [];
@@ -122,7 +115,6 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
                         t={t}
                         tracksSaved={tracksSaved}
                         setTracksSaved={setTracksSaved}
-                        tracksStatus={tracksStatus}
                         idx={idx}
                       />
                     </li>
