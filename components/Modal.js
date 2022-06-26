@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import LogoSVG from "../public/logo-no-text.svg";
+import LogoSVG from "../public/images/logo-no-text.svg";
 import Lyrics from "../components/Lyrics";
-import CloseSVG from "../public/close.svg";
+import CloseSVG from "../public/images/close.svg";
 import apiUse from "../functions/common";
 import Cookies from "js-cookie";
 import AddPlaylist from "./AddPlaylist";

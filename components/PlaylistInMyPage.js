@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ChevronSVG from "../public/chevron-double-right.svg";
-import AddSVG from "../public/add.svg";
+import ChevronSVG from "../public/images/chevron-double-right.svg";
+import AddSVG from "../public/images/add.svg";
 import CreatePlaylistForm from "./CreatePlaylistForm";
 import { createPlaylist } from "../functions/playlists";
 import Cookies from "js-cookie";

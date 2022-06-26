@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import SearchSVG from "../../public/search.svg";
+import SearchSVG from "../../public/images/search.svg";
 import Cover from "../../components/Cover";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";

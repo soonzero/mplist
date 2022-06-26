@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import LogoSVG from "../../public/logo-no-text.svg";
+import LogoSVG from "../../public/images/logo-no-text.svg";
 
 const Logout = () => {
   const router = useRouter();

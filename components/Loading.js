@@ -1,4 +1,4 @@
-import LogoSVG from "../public/logo-no-text.svg";
+import LogoSVG from "../public/images/logo-no-text.svg";
 
 const Loading = ({ mode }) => {
   return (

@@ -4,7 +4,7 @@ import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Image from "next/image";
-import TrashSVG from "../../public/trash.svg";
+import TrashSVG from "../../public/images/trash.svg";
 
 const SavedTracks = () => {
   const token = Cookies.get("mplistToken");

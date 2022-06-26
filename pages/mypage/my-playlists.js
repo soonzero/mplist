@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import DeleteSVG from "../../public/delete.svg";
+import DeleteSVG from "../../public/images/delete.svg";
 import Link from "next/link";
 import { unfollowPlaylist, getMyPlaylists } from "../../functions/playlists";
 
