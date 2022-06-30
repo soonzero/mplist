@@ -45,11 +45,11 @@ const Cover = ({ category, item }) => {
     >
       {hover && (
         <div className="absolute flex flex-col px-3 items-center justify-center w-full h-full top-0 left-0 text-white z-10">
-          <span className="font-bold mobile:text-sm tablet:text-base laptop:text-lg truncate">
+          <h3 className="font-bold mobile:text-sm tablet:text-base laptop:text-lg truncate">
             {data().title}
-          </span>
+          </h3>
           {data().artists && (
-            <span className="text-center">
+            <h4 className="text-center">
               {data().artists.map((a, idx) => {
                 return (
                   <span key={a.id}>
@@ -62,13 +62,14 @@ const Cover = ({ category, item }) => {
                   </span>
                 );
               })}
-            </span>
+            </h4>
           )}
         </div>
       )}
       <Image
         className={classNames({ "blur-sm": hover })}
         src={data().image}
+        alt={`album cover of ${data().title}`}
         width={640}
         height={640}
       />

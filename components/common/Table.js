@@ -60,7 +60,7 @@ export default function Table({ category, limit, count }) {
   };
 
   return (
-    <section className="pt-4 pb-8 last:pb-12">
+    <article className="pt-4 pb-8 last:pb-12">
       <h1 className="relative flex justify-between font-bold mobile:text-lg tablet:text-2xl mb-4">
         {tableTopic}
         {table?.length > 0 && (
@@ -75,11 +75,11 @@ export default function Table({ category, limit, count }) {
           </div>
         )}
       </h1>
-      <div className="grid grid-flow-col grid-cols-2 grid-rows-2 gap-2 tablet:grid-cols-4 tablet:grid-rows-1">
+      <section className="grid grid-flow-col grid-cols-2 grid-rows-2 gap-2 tablet:grid-cols-4 tablet:grid-rows-1">
         {table?.map((i) => (
           <Cover key={i.id} category={category} item={i} />
         ))}
-      </div>
-    </section>
+      </section>
+    </article>
   );
 }

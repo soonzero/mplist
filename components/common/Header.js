@@ -29,19 +29,17 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 bg-white shadow-sm z-10">
-      <div className="flex flex-row h-16 items-center max-w-screen-2xl mx-auto justify-between px-8 mobile:px-4 tablet:px-8">
-        <NavBar pathname={router.pathname} />
-        {!token ? (
-          <LoginWithSpotifyBtn />
-        ) : (
-          <ProfileBtn
-            dropdown={dropdown}
-            setDropdown={setDropdown}
-            logout={logout}
-          />
-        )}
-      </div>
+    <header className="sticky top-0 bg-white shadow-sm z-10 flex flex-row h-16 items-center max-w-screen-2xl mx-auto justify-between mobile:px-4 tablet:px-8 box-border">
+      <NavBar pathname={router.pathname} />
+      {!token ? (
+        <LoginWithSpotifyBtn />
+      ) : (
+        <ProfileBtn
+          dropdown={dropdown}
+          setDropdown={setDropdown}
+          logout={logout}
+        />
+      )}
     </header>
   );
 }
