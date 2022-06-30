@@ -197,7 +197,7 @@ export const FollowBtn = ({ followed, func }) => {
 export const ChangeBtn = ({ setChangeMode }) => {
   return (
     <button
-      className="absolute top-0 right-0 cursor-pointer text-gray-400 hover:text-mplist mobile:top-2/3 mobile: m-3 mobile-lg:top-0 mobile-lg:m-5"
+      className="absolute top-0 right-0 cursor-pointer text-gray-400 hover:text-mplist"
       onClick={() => setChangeMode((prev) => !prev)}
     >
       <ChangeSVG className="w-5 h-5" />
