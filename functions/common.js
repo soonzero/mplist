@@ -29,12 +29,10 @@ export const manageMine = async (item, status, setStatus, idx) => {
       await apiUse(token, `${status[idx] ? "DELETE" : "PUT"}`, `/me/tracks`, {
         ids: item.id,
       });
-      let newStatus = [];
-      status.map((item, index) => {
+      let newStatus = [...status];
+      newStatus.map((item, index) => {
         if (idx === index) {
-          newStatus.push(!item);
-        } else {
-          newStatus.push(item);
+          newStatus[idx] = !item;
         }
         return newStatus;
       });
@@ -56,20 +54,6 @@ export const getAlbumSaved = async (id, setAlbumSaved) => {
   );
   setAlbumSaved(result[0]);
 };
-
-// 실시간 트랙 저장 여부 변경 아직 구현 안 됨
-
-// export const getTracksSaved = async (id, setTracksSaved) => {
-//   const result = await apiUse(
-//     Cookies.get("mplistToken"),
-//     "GET",
-//     `/me/tracks/contains`,
-//     {
-//       ids: id,
-//     }
-//   );
-//   setTracksSaved(result);
-// };
 
 const apiUse = async (token, method, url, params) => {
   const { data } = await axios({
