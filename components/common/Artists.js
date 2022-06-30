@@ -1,19 +1,25 @@
 import Link from "next/link";
 
-const Artists = ({ artists }) => {
+const Artists = ({ artists, link }) => {
   return (
-    <span className="basis-3/12 truncate mobile:text-xs mobile-lg:text-sm">
+    <>
       {artists.map((artist, idx) => {
         return (
-          <Link key={artist.id} href={`/artists/${artist.id}`}>
-            <span className="cursor-pointer hover:text-mplist hover:underline">
-              {artist.name}
-              {idx === artists.length - 1 ? "" : ", "}
-            </span>
-          </Link>
+          <span key={artist.id}>
+            {link ? (
+              <Link href={`/artists/${artist.id}`}>
+                <a className="cursor-pointer hover:text-mplist hover:underline">
+                  {artist.name}
+                </a>
+              </Link>
+            ) : (
+              artist.name
+            )}
+            {idx === artists.length - 1 ? "" : ", "}
+          </span>
         );
       })}
-    </span>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
+import Artists from "../../components/common/Artists";
 import TrashSVG from "../../public/images/trash.svg";
 
 const SavedAlbums = () => {
@@ -57,18 +58,7 @@ const SavedAlbums = () => {
                         {i.album.name}
                       </h2>
                       <p>
-                        {i.album.artists.map((a, idx) => {
-                          return (
-                            <span key={a.id}>
-                              {a.name}
-                              {i.album.artists.length === 1
-                                ? ""
-                                : idx === i.album.artists.length - 1
-                                ? ""
-                                : ", "}
-                            </span>
-                          );
-                        })}
+                        <Artists artists={i.album.artists} />
                       </p>
                     </div>
                     <span

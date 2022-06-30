@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
+import Artists from "./Artists";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -50,18 +51,7 @@ const Cover = ({ category, item }) => {
           </h3>
           {data().artists && (
             <h4 className="text-center">
-              {data().artists.map((a, idx) => {
-                return (
-                  <span key={a.id}>
-                    <div className="inline-block mobile:text-xs tablet:text-sm laptop:text-base">
-                      {a.name}
-                      <span className="whitespace-pre-wrap">
-                        {idx != data().artists.length - 1 && `, `}
-                      </span>
-                    </div>
-                  </span>
-                );
-              })}
+              <Artists artists={data().artists} />
             </h4>
           )}
         </div>

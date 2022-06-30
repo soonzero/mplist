@@ -9,6 +9,7 @@ import {
   SaveToMineLargeBtn,
 } from "../../components/common/Buttons";
 import TrackItems from "../../components/albums/TrackItems";
+import Artists from "../../components/common/Artists";
 
 export const getServerSideProps = async (context) => {
   const albumId = context.params.id;
@@ -59,29 +60,18 @@ const Album = ({ data, albumStatus, tracksStatus }) => {
         {data && (
           <article className="py-4 flex mobile:flex-col mobile-lg:flex-col tablet:flex-row">
             <section className="h-full flex flex-col border-2 rounded-xl p-4">
-              <span className="mr-auto mb-5">
+              <figure className="mr-auto mb-5">
                 <Image
                   src={data.images[0].url}
                   alt={`album cover of ${data.name}`}
                   width={325}
                   height={325}
                 />
-              </span>
+              </figure>
               <div className="flex flex-col mb-3">
                 <h1 className="font-bold mb-1">{data.name}</h1>
                 <p className="mb-1">
-                  {data.artists.map((artist, idx) => {
-                    return (
-                      <Link href={`/artists/${artist.id}`} key={artist.id}>
-                        <a className="text-sm">
-                          <span className="inline-block cursor-pointer hover:text-mplist">
-                            {artist.name}
-                          </span>
-                          <span>{idx !== data.artists.length - 1 && ", "}</span>
-                        </a>
-                      </Link>
-                    );
-                  })}
+                  <Artists artists={data.artists} link />
                 </p>
                 <time className="text-xs text-slate-500">
                   {`${data.release_date.replace("-", ".").replace("-", ".")}`}

@@ -4,6 +4,7 @@ import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Image from "next/image";
+import Artists from "../../components/common/Artists";
 import TrashSVG from "../../public/images/trash.svg";
 
 const SavedTracks = () => {
@@ -55,18 +56,7 @@ const SavedTracks = () => {
                     <div className="grow ml-4 flex flex-col">
                       <h2 className="font-semibold">{i.track.name}</h2>
                       <p className="text-sm">
-                        {i.track.album.artists.map((a, idx) => {
-                          return (
-                            <span key={a.id}>
-                              {a.name}
-                              {i.track.album.artists.length === 1
-                                ? ""
-                                : idx === i.track.album.artists.length - 1
-                                ? ""
-                                : ", "}
-                            </span>
-                          );
-                        })}
+                        <Artists artists={i.track.album.artists} />
                       </p>
                     </div>
                     <span
