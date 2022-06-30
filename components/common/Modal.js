@@ -5,7 +5,7 @@ import Lyrics from "../albums/Lyrics";
 import CloseSVG from "../../public/images/close.svg";
 import apiUse from "../../functions/common";
 import Cookies from "js-cookie";
-import AddPlaylist from "../mypage/AddPlaylist";
+import PlaylistSelection from "../mypage/PlaylistSelection";
 
 const Modal = ({ mode, setModal, data }) => {
   let didCancel = false;
@@ -76,7 +76,7 @@ const Modal = ({ mode, setModal, data }) => {
         </div>
         {mode === "lyrics" && <Lyrics lyrics={lyrics} error={error} />}
         {mode === "addTrack" && (
-          <AddPlaylist
+          <PlaylistSelection
             playlists={playlists}
             data={data.uri}
             error={error}

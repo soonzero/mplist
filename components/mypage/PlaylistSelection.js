@@ -2,7 +2,7 @@ import Image from "next/image";
 import Loading from "../common/Loading";
 import { addItemToMyPlaylist } from "../../functions/playlists";
 
-const AddPlaylist = ({ playlists, data, error, setModal }) => {
+const PlaylistSeletion = ({ playlists, data, error, setModal }) => {
   return (
     <>
       {playlists ? (
@@ -22,6 +22,7 @@ const AddPlaylist = ({ playlists, data, error, setModal }) => {
                     src={p.images[0]?.url || `/images/logo-no-text.svg`}
                     width={75}
                     height={75}
+                    alt={`cover image of playlist ${p.name}`}
                   />
                   <div className="flex ml-2 px-2 whitespace-pre-wrap">
                     <h3 className="font-semibold">{p.name}</h3>
@@ -43,4 +44,4 @@ const AddPlaylist = ({ playlists, data, error, setModal }) => {
   );
 };
 
-export default AddPlaylist;
+export default PlaylistSeletion;
