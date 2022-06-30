@@ -57,6 +57,7 @@ const PlaylistInMyPage = ({ id, playlists }) => {
                       src={i.images[0]?.url || `/images/logo-no-text.svg`}
                       height={250}
                       width={250}
+                      alt={`cover image of playlist ${i.name}`}
                     />
                   </Link>
                 </div>

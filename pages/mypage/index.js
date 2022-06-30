@@ -38,10 +38,13 @@ const MyPage = () => {
       {result && (
         <Layout title="내 정보">
           <MyProfile info={result.info} />
-          <MyTopItems
-            topTracks={result.topTracks}
-            topArtists={result.topArtists}
-          />
+          {(result.topTracks.total > 0 || result.topArtists.total > 0) && (
+            <MyTopItems
+              topTracks={result.topTracks}
+              topArtists={result.topArtists}
+            />
+          )}
+
           <MyMusic myTracks={result.myTracks} myAlbums={result.myAlbums} />
           <PlaylistInMyPage id={result.info.id} playlists={result.playlists} />
         </Layout>

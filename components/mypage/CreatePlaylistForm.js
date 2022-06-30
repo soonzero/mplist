@@ -9,7 +9,7 @@ const CreatePlaylistForm = ({
 }) => {
   return (
     <form className="grow flex items-center space-x-5">
-      <div>
+      <section>
         <label
           htmlFor="public"
           className={classNames("flex items-center text-slate-500", {
@@ -25,8 +25,8 @@ const CreatePlaylistForm = ({
           className="hidden"
           onChange={() => setChecked((prev) => !prev)}
         />
-      </div>
-      <div className="basis-3/12 flex items-center">
+      </section>
+      <section className="basis-3/12 flex items-center">
         <label htmlFor="title" className="mr-3">
           제목
         </label>
@@ -38,8 +38,8 @@ const CreatePlaylistForm = ({
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </div>
-      <div className="grow flex items-center ">
+      </section>
+      <section className="grow flex items-center ">
         <label htmlFor="description" className="mr-3">
           설명
         </label>
@@ -50,7 +50,7 @@ const CreatePlaylistForm = ({
           className="border-b-2 w-10/12 border-mplist outline-none p-1 text-sm"
           onChange={(e) => setDescription(e.target.value)}
         />
-      </div>
+      </section>
     </form>
   );
 };
