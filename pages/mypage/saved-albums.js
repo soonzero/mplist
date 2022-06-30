@@ -32,60 +32,62 @@ const SavedAlbums = () => {
 
   return (
     <Layout title="내가 저장한 앨범">
-      <div className="py-4">
+      <section className="py-4">
         <h1 className="text-2xl font-bold p-2 border-b">내가 저장한 앨범</h1>
         {result?.total > 0 ? (
           <ul className="mobile:flex mobile:flex-col laptop:grid laptop:grid-cols-2">
             {result.items.map((i) => {
               return (
-                <div key={i.id} className="hover:bg-mplist">
-                  <li className="flex items-center p-3">
-                    <Link href={`/albums/${i.album.id}`}>
-                      <Image
-                        className="cursor-pointer"
-                        src={i.album.images[0]?.url}
-                        width={100}
-                        height={100}
-                      />
-                    </Link>
-                    <div className="grow flex justify-between items-center">
-                      <div className="grow ml-4 flex flex-col">
-                        <h2 className="font-semibold truncate mb-1">
-                          {i.album.name}
-                        </h2>
-                        <p>
-                          {i.album.artists.map((a, idx) => {
-                            return (
-                              <span key={a.id}>
-                                {a.name}
-                                {i.album.artists.length === 1
-                                  ? ""
-                                  : idx === i.album.artists.length - 1
-                                  ? ""
-                                  : ", "}
-                              </span>
-                            );
-                          })}
-                        </p>
-                      </div>
-                      <span
-                        className="hover:text-white z-auto cursor-pointer"
-                        onClick={() => deleteAndGetData(i.album.id)}
-                      >
-                        <TrashSVG className="w-5 h-5" />
-                      </span>
+                <li
+                  key={i.id}
+                  className="flex items-center p-3 cursor-pointer hover:bg-mplist"
+                >
+                  <Link href={`/albums/${i.album.id}`}>
+                    <Image
+                      className="cursor-pointer"
+                      src={i.album.images[0]?.url}
+                      width={100}
+                      height={100}
+                      alt={`album cover of ${i.album.name}`}
+                    />
+                  </Link>
+                  <div className="grow flex justify-between items-center">
+                    <div className="grow ml-4 flex flex-col">
+                      <h2 className="font-semibold truncate mb-1">
+                        {i.album.name}
+                      </h2>
+                      <p>
+                        {i.album.artists.map((a, idx) => {
+                          return (
+                            <span key={a.id}>
+                              {a.name}
+                              {i.album.artists.length === 1
+                                ? ""
+                                : idx === i.album.artists.length - 1
+                                ? ""
+                                : ", "}
+                            </span>
+                          );
+                        })}
+                      </p>
                     </div>
-                  </li>
-                </div>
+                    <span
+                      className="hover:text-white z-auto cursor-pointer"
+                      onClick={() => deleteAndGetData(i.album.id)}
+                    >
+                      <TrashSVG className="w-5 h-5" />
+                    </span>
+                  </div>
+                </li>
               );
             })}
           </ul>
         ) : (
           <div className="w-full py-12 text-center text-xl font-semibold">
-            내가 저장한 앨범이 없습니다.{" "}
+            내가 저장한 앨범이 없습니다.
           </div>
         )}
-      </div>
+      </section>
     </Layout>
   );
 };

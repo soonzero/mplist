@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import ChevronSVG from "../../public/images/chevron-double-right.svg";
 
@@ -45,25 +46,35 @@ const MySaved = ({ things, data }) => {
               : data.items
             ).map((t) => {
               return things === "albums" ? (
-                <Image src={t.album.images[0]?.url} width={300} height={300} />
-              ) : (
-                <li className="flex items-center py-2 first:pt-0 last:pb-0">
+                <Link href={`/albums/${t.album.id}`}>
                   <Image
-                    src={t.track.album.images[0]?.url}
-                    width={50}
-                    height={50}
+                    className="cursor-pointer"
+                    src={t.album.images[0]?.url}
+                    width={300}
+                    height={300}
+                    alt={`album cover of ${t.album.name}`}
                   />
-                  <h3 className="mx-3 text-sm">{t.track.name}</h3>
-                </li>
+                </Link>
+              ) : (
+                <Link href={`/albums/${t.track.album.id}`}>
+                  <li className="flex items-center cursor-pointer py-2 first:pt-0 last:pb-0">
+                    <Image
+                      src={t.track.album.images[0]?.url}
+                      width={50}
+                      height={50}
+                    />
+                    <h3 className="mx-3 text-sm">{t.track.name}</h3>
+                  </li>
+                </Link>
               );
             })}
           </>
         ) : (
-          <span className="text-center py-5">
+          <p className="text-center py-5">
             {`내가 저장한 ${
               things === "albums" ? "앨범" : "트랙"
             }이 아직 없습니다.`}
-          </span>
+          </p>
         )}
       </div>
     </article>

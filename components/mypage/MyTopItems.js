@@ -7,7 +7,7 @@ const MyTopItems = ({ topTracks, topArtists }) => {
       {(topTracks.total > 0 || topArtists.total > 0) && (
         <section className="py-4 flex flex-col mb-8">
           <h1 className="font-bold mb-4 text-2xl">내가 가장 좋아하는 음악</h1>
-          <div className="mobile:flex-col tablet:flex-row items-center justify-center">
+          <articles className="mobile:flex-col tablet:flex-row items-center justify-center">
             {topArtists.total > 0 && (
               <article className="flex flex-col">
                 <h2 className="pb-2 border-b">내가 가장 좋아하는 아티스트</h2>
@@ -55,7 +55,7 @@ const MyTopItems = ({ topTracks, topArtists }) => {
                 </ul>
               </article>
             )}
-          </div>
+          </articles>
         </section>
       )}
     </>

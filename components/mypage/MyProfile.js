@@ -9,6 +9,7 @@ const MyProfile = ({ info }) => {
           src={info.images[0]?.url || `/images/profile.svg`}
           width={200}
           height={200}
+          alt="my profile image"
         />
         <table className="grow mobile:text-xs">
           <thead>
