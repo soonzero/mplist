@@ -119,6 +119,6 @@ Spotify API를 이용하여 로그인/로그아웃, 검색(앨범, 트랙, 아�
 
 ## 👀 프로젝트 상세 내용
 
-- [Notion 보러가기 📝](https://www.notion.so/MPList-37103c94cbf14920a3e4bbae4a8d209b "Notion으로 이동")
+- [Notion 보러가기 📝](https://soonzero.notion.site/MPList-8fee7e988ad54d9197497fb6847302b3 "Notion으로 이동")
 
 <img src="https://user-images.githubusercontent.com/95613159/174396663-73e176c8-24a2-4059-936c-ef75a870b51d.png">
